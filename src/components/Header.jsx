@@ -17,8 +17,9 @@ const Header = () => {
     const [itemId, setItemId] = useState(1);
     const [product, setProduct] = useState();
     const [open, setOpen] = useState('1');
-    const [head, setHead] = useState(false);
+    let [head, setHead] = useState(false);
     const [head2, setHead2] = useState(false);
+    const [mobileCatalog, setMobileCatalog] = useState([])
 
     const toggleAcc = (id) => {
         if (open === id) {
@@ -71,6 +72,10 @@ const Header = () => {
     useEffect(() => {
         getCatalog();
 
+        axios.get(API_PATH + `product/category-mobile/`)
+            .then((response) => {
+                setMobileCatalog(response.data);
+            })
     }, []);
 
     const location = useLocation()
@@ -80,19 +85,21 @@ const Header = () => {
         if (activeTab !== tab) setActiveTab(tab);
     }
 
-    const getHead = () => {
+    // const getHead = () => {
 
-        setHead(true)
-        if (head == true) {
-            setHead(false)
-            setHead2(false);
-        }
+    //     setHead(true)
+    //     if (head == true) {
+    //         setHead(false)
+    //         setHead2(false);
+    //     }
 
-    }
+    // }
+
     const getHead2 = () => {
         setHead2(!head2)
     }
 
+    console.log('category mobile', mobileCatalog);
 
     return (
         <>
@@ -251,28 +258,58 @@ const Header = () => {
                         </div>
                     </Link>
 
-                    {catalog && catalog.map((item, index) => {
+                    {mobileCatalog && mobileCatalog.map((item) => {
+                        const isClicked = head == item.id;
+
                         return (
-                            <div key={index} className="head_4_a">
-                                <div onClick={() => getHead()} className="head_4_box">
+                            <div key={item.id} className="head_4_a">
+
+                                <div className="head_4_box" onClick={() => setHead(item.id)}>
                                     <div className="head_4_left">
-                                        <div className="head_4_img_box"><img src={item.get_icon} alt="" className="head_4_img" /></div>
+
+                                        <div className="head_4_img_box">
+                                            <img src={item.get_icon} alt="" className="head_4_img" />
+                                        </div>
+
                                         <div className="head_4_h">{item.name}</div>
                                     </div>
-                                    <img className={`head_4_a_icon ${head ? 'active' : ''}`} src="/img/down.png" alt="" />
+                                    <img className={`head_4_a_icon ${isClicked ? 'active' : ''}`} src="/img/down.png" alt="" />
                                 </div>
 
-                                <div onClick={() => getHead2()} className={`head_4_box_2 ${head ? 'active' : ''}`}>
-                                    <div className="head_4_left">
-                                        <div className="head_4_h">{getText('header_6')}</div>
-                                    </div>
-                                    <img className={`head_4_a_icon ${head2 ? 'active' : ''}`} src="/img/down.png" alt="" />
-                                </div>
+                                <div>
+                                    {isClicked
+                                        ?
+                                        item.subcategories.map((subItem) => {
+                                            const isSubClicked = head2 == subItem.id
 
-                                <div className={`head_4_box_3 ${head2 ? 'active' : ''}`}>
-                                    <div className="head_4_left">
-                                        <div className="head_4_h">{getText('header_6')}</div>
-                                    </div>
+                                            return (
+                                                <div>
+                                                    <div onClick={() => setHead2(subItem.id)} className={`head_4_box_2 ${isClicked ? 'active' : ''}`}>
+                                                        <div className="head_4_left">
+                                                            <div className="head_4_h">{subItem.name}</div>
+                                                        </div>
+                                                        <img className={`head_4_a_icon`} src="/img/down.png" alt="" />
+                                                    </div>
+
+
+                                                    {/* <div className={`head_4_box_3 ${isClicked ? 'active' : ''}`}>
+                                        <div className="head_4_left">
+                                            <div className="head_4_h">Sub_sub</div>
+                                        </div>
+                                        <img className={`head_4_a_icon`} src="/img/down.png" alt="" />
+                                    </div> */}
+                                                    {isSubClicked ?
+                                                        <div className={`head_4_box_3 ${isSubClicked ? 'active' : ''}`}>
+                                                            <div className="head_4_left">
+                                                                <div className="head_4_h">Sub_sub</div>
+                                                            </div>
+                                                        </div>
+
+                                                        : null}
+                                                </div>
+                                            )
+                                        })
+                                        : null}
                                 </div>
 
                             </div>

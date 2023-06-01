@@ -3266,7 +3266,7 @@ html {
 
   .head_4_a {
     width: 100%;
-    padding: 10px 10px;
+    padding: 10px 15px;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -3285,6 +3285,17 @@ html {
       transition: 0.4s;
       display: none;
 
+      .head_4_box_3 {
+        padding: 10px 0;
+        margin-top: 10px;
+        padding-left: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: 0.4s;
+        display: none;
+      }
+
       &.active {
         display: flex;
       }
@@ -3298,7 +3309,6 @@ html {
       align-items: center;
       justify-content: space-between;
       display: none;
-      opacity: 0;
 
       &.active {
         display: flex;
