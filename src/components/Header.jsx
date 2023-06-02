@@ -276,41 +276,32 @@ const Header = () => {
                                     <img className={`head_4_a_icon ${isClicked ? 'active' : ''}`} src="/img/down.png" alt="" />
                                 </div>
 
-                                <div>
-                                    {isClicked
-                                        ?
-                                        item.subcategories.map((subItem) => {
-                                            const isSubClicked = head2 == subItem.id
+                                {isClicked
+                                    ?
+                                    item.subcategories.map((subItem) => {
+                                        const isSubClicked = head2 == subItem.id
 
-                                            return (
-                                                <div>
-                                                    <div onClick={() => setHead2(subItem.id)} className={`head_4_box_2 ${isClicked ? 'active' : ''}`}>
+                                        return (
+                                            <div>
+                                                <div onClick={() => setHead2(subItem.id)} className={`head_4_box_2 ${isClicked ? 'active' : ''}`}>
+                                                    <div className="head_4_left">
+                                                        <div className="head_4_h">{subItem.name}</div>
+                                                    </div>
+                                                    <img className={`head_4_a_icon ${isSubClicked ? 'active' : ''}`} src="/img/down.png" alt="" />
+                                                </div>
+
+                                                {isSubClicked ?
+                                                    <div className={`head_4_box_3 ${isSubClicked ? 'active' : ''}`}>
                                                         <div className="head_4_left">
-                                                            <div className="head_4_h">{subItem.name}</div>
+                                                            <div className="head_4_h">Sub_sub</div>
                                                         </div>
-                                                        <img className={`head_4_a_icon`} src="/img/down.png" alt="" />
                                                     </div>
 
-
-                                                    {/* <div className={`head_4_box_3 ${isClicked ? 'active' : ''}`}>
-                                        <div className="head_4_left">
-                                            <div className="head_4_h">Sub_sub</div>
-                                        </div>
-                                        <img className={`head_4_a_icon`} src="/img/down.png" alt="" />
-                                    </div> */}
-                                                    {isSubClicked ?
-                                                        <div className={`head_4_box_3 ${isSubClicked ? 'active' : ''}`}>
-                                                            <div className="head_4_left">
-                                                                <div className="head_4_h">Sub_sub</div>
-                                                            </div>
-                                                        </div>
-
-                                                        : null}
-                                                </div>
-                                            )
-                                        })
-                                        : null}
-                                </div>
+                                                    : null}
+                                            </div>
+                                        )
+                                    })
+                                    : null}
 
                             </div>
                         )
