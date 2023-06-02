@@ -229,25 +229,25 @@ const Header = () => {
                             <div className="head_3_h">{getText('header_2')}</div>
                         </div>
                     </Link>
-                    <Link to="/" className="head_3_a">
+                    <Link to="/shop" className="head_3_a">
                         <div className="head_3_left">
                             <div className="head_3_img_box"><img src="/img/icon_buy_2.png" alt="" className="head_3_img" /></div>
                             <div className="head_3_h">{getText('header_3')}</div>
                         </div>
                     </Link>
-                    <Link to="/" className="head_3_a">
+                    <Link to="/about" className="head_3_a">
                         <div className="head_3_left">
                             <div className="head_3_img_box"><img src="/img/icon_talk_2.png" alt="" className="head_3_img" /></div>
                             <div className="head_3_h">{getText('header_4')}</div>
                         </div>
                     </Link>
-                    <Link to="/" className="head_3_a">
+                    <Link to="/politic" className="head_3_a">
                         <div className="head_3_left">
                             <div className="head_3_img_box"><img src="/img/icon_key_2.png" alt="" className="head_3_img" /></div>
                             <div className="head_3_h">{getText('header_5')}</div>
                         </div>
                     </Link>
-                    <Link to="/" className="head_3_a">
+                    <Link to="/public" className="head_3_a">
                         <div className="head_3_left">
                             <div className="head_3_img_box"><img src="/img/icon_bag_2.png" alt="" className="head_3_img" /></div>
                             <div className="head_3_h">{getText('header_6')}</div>
@@ -298,7 +298,6 @@ const Header = () => {
                                         )
                                     })
                                     : null}
-
                             </div>
                         )
                     })}
