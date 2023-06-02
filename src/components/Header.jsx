@@ -21,14 +21,6 @@ const Header = () => {
     const [head2, setHead2] = useState(false);
     const [mobileCatalog, setMobileCatalog] = useState([])
 
-    const toggleAcc = (id) => {
-        if (open === id) {
-            setOpen();
-        } else {
-            setOpen(id);
-        }
-    }
-
     const getCatalog = () => {
         axios.get(API_PATH + 'product/category/')
             .then((res => {
@@ -45,9 +37,8 @@ const Header = () => {
             .then((res => {
                 setProduct(res.data)
                 localStorage.setItem('CAT_ID', category_id)
-                console.log(res.data);
+                console.log(res.data)
                 nav('/shop')
-                // document.location.reload(true)
             }))
     }
 
@@ -58,8 +49,6 @@ const Header = () => {
                 setSub(res.data)
             }))
     }
-
-
 
     useEffect(() => {
         axios.get(API_PATH + `product/category/${itemId}/`)
