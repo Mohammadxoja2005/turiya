@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
@@ -278,7 +278,7 @@ const Header = () => {
                                         const isSubClicked = head2 == subItem.id
 
                                         return (
-                                            <div>
+                                            <Fragment>
                                                 <div onClick={() => setHead2(subItem.id)} className={`head_4_box_2 ${isClicked ? 'active' : ''}`}>
                                                     <div className="head_4_left">
                                                         <div className="head_4_h">{subItem.name}</div>
@@ -294,7 +294,7 @@ const Header = () => {
                                                     </div>
 
                                                     : null}
-                                            </div>
+                                            </Fragment>
                                         )
                                     })
                                     : null}
