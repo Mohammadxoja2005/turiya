@@ -2,7 +2,6 @@ import React, { useEffect, useState, Fragment } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
-import { AccordionBody, AccordionHeader, AccordionItem, UncontrolledAccordion, Accordion } from 'reactstrap'
 import axios from 'axios';
 import { API_PATH } from '../tools/constats';
 import { getText } from '../locales'
