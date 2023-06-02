@@ -185,15 +185,12 @@ const Header = () => {
                                 <div className="head_2_line"></div>
                             </div>
                             <div className="col-lg-8 col-5">
-                                {/* activeTab={activeTab} */}
+
                                 <TabContent >
-                                    {/* tabId={catName ? catName : '1'} */}
                                     <TabPane className=''>
-                                        {/* {sub} */}
                                         <div className="row">
                                             <div className="col-12">
                                                 <div className="header_2_name">
-                                                    {/* {catName.name} */}
                                                 </div>
                                             </div>
 
@@ -224,8 +221,7 @@ const Header = () => {
             </div>
 
             <div className={`header_3 ${burger ? 'active' : ''}`}>
-                {/* <div className="container"> */}
-                {/* <div className="row"> */}
+
                 <div className="header_mobile_links">
                     <Link to="/" className="head_3_a">
                         <div className="head_3_left">
@@ -307,8 +303,6 @@ const Header = () => {
                         )
                     })}
                 </div>
-                {/* </div> */}
-                {/* </div> */}
             </div >
         </>
     )
