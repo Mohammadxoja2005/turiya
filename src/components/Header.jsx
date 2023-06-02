@@ -70,7 +70,7 @@ const Header = () => {
     }
 
     return (
-        <>
+        <Fragment>
             <div className="top_3"></div>
             <div className={`Header ${burger ? 'active' : ''}`}>
                 <div className="container">
@@ -265,7 +265,7 @@ const Header = () => {
                     })}
                 </div>
             </div >
-        </>
+        </Fragment>
     )
 }
 
