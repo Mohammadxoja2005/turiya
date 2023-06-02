@@ -12,11 +12,9 @@ const Header = () => {
     const [burger, setBurger] = useState()
     const [catalog, setCatalog] = useState([])
     const [sub, setSub] = useState([])
-    const [catName, setCatName] = useState('1')
     const [subCategory, setSubCategory] = useState([]);
     const [itemId, setItemId] = useState(1);
     const [product, setProduct] = useState();
-    const [open, setOpen] = useState('1');
     let [head, setHead] = useState(false);
     const [head2, setHead2] = useState(false);
     const [mobileCatalog, setMobileCatalog] = useState([])
