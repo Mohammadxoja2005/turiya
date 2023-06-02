@@ -23,14 +23,12 @@ const Header = () => {
         axios.get(API_PATH + 'product/category/')
             .then((res => {
                 setCatalog(res.data)
-                console.log(res.data);
             }))
     }
 
     const nav = useNavigate()
 
     const getProductbyCategory = (category_id) => {
-        console.log(category_id);
         axios.get(API_PATH + `product/?cat=${category_id}`)
             .then((res => {
                 setProduct(res.data)
