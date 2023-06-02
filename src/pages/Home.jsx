@@ -7,10 +7,10 @@ import Interesting from '../components/Interesting'
 const Home = () => {
     return (
         <>
-            <Header />
+            {/* <Header />
             <HeadMain />
             <Deal />
-            <Interesting />
+            <Interesting /> */}
         </>
     )
 }

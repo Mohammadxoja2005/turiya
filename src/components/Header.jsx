@@ -71,6 +71,7 @@ const Header = () => {
     return (
         <Fragment>
             <div className="top_3"></div>
+
             <div className={`Header ${burger ? 'active' : ''}`}>
                 <div className="container">
                     <div className="row justify-content-between">
@@ -263,7 +264,7 @@ const Header = () => {
                         )
                     })}
                 </div>
-            </div >
+            </div>
         </Fragment>
     )
 }
