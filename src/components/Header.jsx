@@ -80,26 +80,9 @@ const Header = () => {
 
     const location = useLocation()
 
-
     const toggle = tab => {
         if (activeTab !== tab) setActiveTab(tab);
     }
-
-    // const getHead = () => {
-
-    //     setHead(true)
-    //     if (head == true) {
-    //         setHead(false)
-    //         setHead2(false);
-    //     }
-
-    // }
-
-    const getHead2 = () => {
-        setHead2(!head2)
-    }
-
-    console.log('category mobile', mobileCatalog);
 
     return (
         <>
@@ -125,7 +108,6 @@ const Header = () => {
 
                             </div>
                         </div>
-
 
                         <div className="col-lg-10 col-12 d-flex align-items-center justify-content-end">
                             <Link to='/' className={`head_box_2 ${location.pathname === '/' ? 'active' : ''}`}>
@@ -153,8 +135,6 @@ const Header = () => {
                                 <div className="head_h">{getText('header_6')}</div>
                             </Link>
                         </div>
-
-
                     </div>
                 </div>
 
@@ -216,12 +196,9 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
             <div className={`header_3 ${burger ? 'active' : ''}`}>
-
                 <div className="header_mobile_links">
                     <Link to="/" className="head_3_a">
                         <div className="head_3_left">
