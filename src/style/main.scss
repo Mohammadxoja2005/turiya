@@ -3213,14 +3213,17 @@ html {
 }
 
 .Public {
-  padding-top: 30px;
-  padding-bottom: 100px;
+  padding: 30px 20px 100px 20px;
   background-image: url(../images/back.png);
   background-attachment: fixed;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; 
 
-  .container {
+
+
+  .public_container {
+    width: 100%;
     max-width: 1780px;
+    margin: auto;
   }
 
   .pub_link {

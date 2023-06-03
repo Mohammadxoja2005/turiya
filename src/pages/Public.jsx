@@ -7,9 +7,8 @@ const Public = () => {
 
         <>
             <Header />
-
             <div className="Public">
-                <div className="container">
+                <div className="public_container">
                     <div className="row">
                         <div className="col-12">
                             <div className="pub_link">
