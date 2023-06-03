@@ -11,7 +11,6 @@ import { Rating } from 'react-simple-star-rating'
 import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
 import { getText } from '../locales'
 
-
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 

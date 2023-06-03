@@ -19,12 +19,10 @@ const HeadMain = () => {
     const currect = useRef([])
     const text = useRef([])
 
-
     // Catch Rating value
     const handleRating = (rate) => {
         setRating(rate)
     }
-
 
     const getBack = () => {
         axios.get(API_PATH + 'order/slider/')
@@ -46,8 +44,6 @@ const HeadMain = () => {
     const navigate = useNavigate()
 
     // const saveBtns = document.querySelectorAll('.main_like_h'); 
-
-    // console.log(saveBtns[0]); 
 
     const detail = (id) => {
         localStorage.setItem("PRODUCT_ID", JSON.stringify(id))
@@ -71,16 +67,16 @@ const HeadMain = () => {
 
     };
 
-
     return (
-        <> <div className="top_2">
-            <div className="top_2_box">
-                <img src="/img/search.png" alt="" className="top_2_img" />
-                <input placeholder='Поиск' type="text" name="" id="" className="top_2_inp" />
+        <>
+            <div className="top_2">
+                <div className="top_2_box">
+                    <img src="/img/search.png" alt="" className="top_2_img" />
+                    <input placeholder='Поиск' type="text" name="" id="" className="top_2_inp" />
+                </div>
             </div>
-        </div>
             <div className="HeadMain">
-                <div className="container">
+                <div className="headmain_container">
                     <div className="row">
                         <div className="col-12">
 
@@ -99,6 +95,7 @@ const HeadMain = () => {
                                 )
                             })}
                         </div>
+
                         <div className="col-12">
                             <div className="head_main_box">
                                 {/* <select className='main_sel' name="" id="">

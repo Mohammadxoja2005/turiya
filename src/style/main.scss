@@ -1003,7 +1003,13 @@ html {
 }
 
 .HeadMain {
+  padding: 0 20px;
   .container {
+    max-width: 1780px;
+  }
+
+  .headmain_container {
+    width: 100%;
     max-width: 1780px;
   }
 
