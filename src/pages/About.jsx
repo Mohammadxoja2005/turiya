@@ -8,7 +8,7 @@ const About = () => {
         <>
             <Header />
             <div className="About">
-                <div className="container">
+                <div className="about_container">
                     <div className="row justify-content-between">
                         <div className="col-12">
                             <div className="ab_link">
