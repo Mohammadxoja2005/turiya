@@ -24,9 +24,6 @@ const Deal = () => {
     const dispatch = useContext(WishlistDispatchContext);
     const [change, setChange] = useState(false);
 
-
-
-
     const getSale = () => {
         axios.get(API_PATH + 'product/?sale=1')
             .then((res => {
@@ -81,7 +78,7 @@ const Deal = () => {
     return (
         <>
             <div className="Deal">
-                <div className="container">
+                <div className="deal_container">
                     <div className="row">
                         <div className="col-12">
                             <div className="deal_name">{getText("deal_name")}</div>
@@ -101,8 +98,6 @@ const Deal = () => {
                             )
                         })}
 
-
-
                     </div>
                     <div className="row deal_row">
                         <div className="col-4 mb-4 d-lg-flex d-none">
@@ -114,7 +109,7 @@ const Deal = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-8">
+                        <div className="col-lg-8" id="sales">
                             <div className="row">
                                 <div className="col-12"><div className="deal_name_2">Cо скидкой</div></div>
                                 {sale && sale.map((item, index) => {

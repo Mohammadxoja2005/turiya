@@ -5,8 +5,7 @@ import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
 import { API_PATH } from '../tools/constats'
 import { Rating } from 'react-simple-star-rating'
 import { getText } from '../locales'
-
-
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const HeadMain = () => {
     const dispatch = useContext(WishlistDispatchContext);

@@ -18,10 +18,6 @@ const Login = () => {
 
     return (
         <>
-
-
-
-
             <div className="Login">
                 <div className="container">
                     <div className="row">
@@ -32,11 +28,11 @@ const Login = () => {
                                         Войти в систему
                                     </div>
                                     <div className="registr_h">
-                                        Ваш номер телефона *
+                                        Ваш Email  <span style={{ color: "red" }}>*</span>
                                     </div>
-                                    <input onChange={e => setLoginPhone(e.target.value)} value={loginPhone} required placeholder='+998' type="text" name="" id="" className="registr_inp" />
+                                    <input onChange={e => setLoginPhone(e.target.value)} value={loginPhone} required placeholder='' type="text" name="" id="" className="registr_inp" />
                                     <div className="registr_h">
-                                        Пароль *
+                                        Пароль <span style={{ color: "red" }}>*</span>
                                     </div>
                                     <input onChange={e => setLoginPassword(e.target.value)} value={loginPassword} required placeholder='' type="text" name="" id="" className="registr_inp" />
 

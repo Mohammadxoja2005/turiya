@@ -629,8 +629,15 @@ html {
 }
 
 .Deal {
+  padding: 0 20px;
   .container {
     max-width: 1780px;
+  }
+
+  .deal_container {
+    width: 100%;
+    max-width: 1780px;
+    margin: auto;
   }
 
   .main_col {
