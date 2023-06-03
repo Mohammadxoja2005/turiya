@@ -129,7 +129,14 @@ const Header = () => {
                             <div className="col-lg-3 col-6" style={{ height: "291px", overflow: "auto" }}>
                                 {catalog && catalog.map((item) => {
                                     return (
-                                        <Nav key={item.id} onMouseMove={() => { setItemId(item.id) }} tabs>
+                                        <Nav key={item.id}
+
+                                            onMouseMove={(e) => {
+                                                setItemId(item.id)
+                                            }}
+
+                                            className="header_menu_nav_link"
+                                            tabs>
                                             <NavItem>
                                                 <NavLink id={item.id} className={classnames({ active: activeTab === item.id, })} onClick={() => { toggle(item.id) }}
                                                 >
@@ -151,7 +158,7 @@ const Header = () => {
                                 <div className="head_2_line"></div>
                             </div>  */}
 
-                            <div className="col-lg-8 col-5" style={{ marginLeft: "35px" }}>
+                            <div className="col-lg-8 col-5" style={{ marginLeft: "35px", height: "291px", overflow: "auto" }}>
 
                                 <TabContent >
                                     <TabPane className=''>
