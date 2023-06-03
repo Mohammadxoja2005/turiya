@@ -73,7 +73,7 @@ const Header = () => {
             <div className="top_3"></div>
 
             <div className={`Header ${burger ? 'active' : ''}`}>
-                <div className="container">
+                <div className="header_container">
                     <div className="row justify-content-between">
                         <div className="col-lg-1 d-flex justify-content-between">
                             <div onClick={test} className={`head_box ${burger ? 'active' : ''}`}>
@@ -94,7 +94,7 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <div className="col-lg-10 col-12 d-flex align-items-center justify-content-end">
+                        <div className="col-lg-10 col-12 d-flex align-items-center justify-content-end" style={{ gap: "50px" }}>
                             <Link to='/' className={`head_box_2 ${location.pathname === '/' ? 'active' : ''}`}>
                                 <img src={`${location.pathname === '/' ? '/img/icon_house_2.png' : '/img/icon_house.png'}`} alt="" className="head_img" />
                                 <div className="head_h">{getText('header_2')}</div>
@@ -126,7 +126,7 @@ const Header = () => {
                 <div className={`header_2 ${burger ? 'active' : ''}`}>
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-3 col-6">
+                            <div className="col-lg-3 col-6" style={{ height: "291px", overflow: "auto" }}>
                                 {catalog && catalog.map((item) => {
                                     return (
                                         <Nav key={item.id} onClick={() => { setItemId(item.id) }} tabs>
@@ -146,10 +146,12 @@ const Header = () => {
                                     )
                                 })}
                             </div>
-                            <div className="col-lg-1 col-1 d-flex justify-content-center">
+
+                            {/* <div className="col-lg-1 col-1 d-flex justify-content-center">
                                 <div className="head_2_line"></div>
-                            </div>
-                            <div className="col-lg-8 col-5">
+                            </div>  */}
+
+                            <div className="col-lg-8 col-5" style={{ marginLeft: "35px" }}>
 
                                 <TabContent >
                                     <TabPane className=''>
