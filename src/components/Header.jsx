@@ -129,9 +129,9 @@ const Header = () => {
                             <div className="col-lg-3 col-6" style={{ height: "291px", overflow: "auto" }}>
                                 {catalog && catalog.map((item) => {
                                     return (
-                                        <Nav key={item.id} onClick={() => { setItemId(item.id) }} tabs>
+                                        <Nav key={item.id} onMouseMove={() => { setItemId(item.id) }} tabs>
                                             <NavItem>
-                                                <NavLink id={item.id} className={classnames({ active: activeTab === item.id, })} onClick={() => { toggle(item.id); }}
+                                                <NavLink id={item.id} className={classnames({ active: activeTab === item.id, })} onClick={() => { toggle(item.id) }}
                                                 >
                                                     <div className="header_2_box mt-2">
                                                         <div className="d-flex">
