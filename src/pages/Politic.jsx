@@ -9,7 +9,7 @@ const Politic = () => {
             <Header />
 
             <div className="Politic">
-                <div className="container">
+                <div className="politic_container">
                     <div className="row">
                         <div className="col-12">
                             <div className="pol_link">
