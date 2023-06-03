@@ -54,15 +54,15 @@ const Registration = () => {
                                         Регистрация
                                     </div>
                                     <div className="registr_h">
-                                        Ваш номер телефона *
+                                        Ваш Email  <span style={{ color: "red" }}>*</span>
                                     </div>
                                     <input value={phone} onChange={e => setPhone(e.target.value)} required placeholder='+998' type="text" name="" id="" className="registr_inp" />
                                     <div className="registr_h">
-                                        Установите пароль *
+                                        Установите пароль <span style={{ color: "red" }}>*</span>
                                     </div>
                                     <input value={password} onChange={e => setPassword(e.target.value)} required placeholder='' type="text" name="" id="" className="registr_inp" />
                                     <div className="registr_h">
-                                        Подтвердите пароль  *
+                                        Подтвердите пароль  <span style={{ color: "red" }}>*</span>
                                     </div>
                                     <input value={password2} onChange={e => setPassword2(e.target.value)} required placeholder='' type="text" name="" id="" className="registr_inp" />
                                     <button type='submit' className="register_reg">Регистрация</button>
