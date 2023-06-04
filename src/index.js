@@ -9,11 +9,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { applyMiddleware, createStore } from "redux";
 import "./style/main.scss";
 import { rootReducers } from "./redux/actions/reducers/rootReducers";
+
 const store = createStore(
   rootReducers,
   composeWithDevTools(applyMiddleware(thunk))
 )
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
     <Provider store={store} >

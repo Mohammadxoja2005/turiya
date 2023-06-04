@@ -1,32 +1,33 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
+import axios from 'axios';
 
 import { FreeMode, Navigation, Thumbs } from "swiper";
-import axios from 'axios';
 import { API_PATH } from '../tools/constats';
 import { addToCart, CartDispatchContext } from '../contexts/cart';
 import { Rating } from 'react-simple-star-rating'
 import { getText } from '../locales';
 import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
 
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 
 const CardMain = () => {
   const [id, setId] = useState(JSON.parse(localStorage.getItem('PRODUCT_ID') || 1))
+  const dispatch = useContext(CartDispatchContext);
+
   const [data, setData] = useState('')
   const [like, setLike] = useState()
   const [data2, setData2] = useState('')
   const [category, setCategory] = useState(JSON.parse(localStorage.getItem('CATEGORY_ID')) || '')
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const dispatch = useContext(CartDispatchContext);
-  const [rating, setRating] = useState(0);
-  const saveBtns = useRef([]);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  const [rating, setRating] = useState(0)
+  const saveBtns = useRef([])
   const currect = useRef([])
-  const [change, setChange] = useState(false);
+  const [change, setChange] = useState(false)
+  const [productQuantity, setProductQuantity] = useState(0);
 
   const handleRating = (rate) => {
     setRating(rate)
@@ -43,6 +44,22 @@ const CardMain = () => {
       }))
   }
 
+  console.log(data.images)
+
+  const imagesData = [
+    {
+      id: 1,
+      get_image: "http://95.130.227.110/media/product_images/Rectangle_406_cUdmEh3.png",
+    },
+    {
+      id: 2,
+      get_image: "http://95.130.227.110/media/product_images/Me.jpg",
+    },
+    {
+      id: 3,
+      get_image: "http://95.130.227.110/media/product_images/photo_2023-04-24_23-23-14.jpg",
+    }
+  ]
 
   useEffect(() => {
     getProduct();
@@ -79,6 +96,7 @@ const CardMain = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-5">
+
               <div className="swiper_box">
                 <Swiper
                   loop={true}
@@ -88,9 +106,9 @@ const CardMain = () => {
                   modules={[FreeMode, Navigation, Thumbs]}
                   className="mySwiper2"
                 >
-                  {data.images && data.images.map((item, index) => {
+                  {data.images && data.images.map((item) => {
                     return (
-                      <SwiperSlide key={index}>
+                      <SwiperSlide key={item.id}>
                         <div className="c_main_swiper_box">
                           <img className='c_main_img' alt="" src={item.get_image} />
                         </div>
@@ -99,6 +117,7 @@ const CardMain = () => {
                   })}
 
                 </Swiper>
+
                 <Swiper
                   onSwiper={setThumbsSwiper}
                   loop={true}
@@ -120,6 +139,7 @@ const CardMain = () => {
                   })}
                 </Swiper>
               </div>
+
             </div>
             <div className="col-lg-7 d-flex flex-column justify-content-between">
               <div className="c_main_up">
@@ -155,12 +175,14 @@ const CardMain = () => {
                     <div className="c_main_info_a_img"><img className="c_main_info_a_icon" src="/img/c_main_5.png" alt="" /></div>
                     <div className="c_main_info_a_name">{getText("c_main_info_a_name")}</div>
                   </a>
-                  {/* <div className="c_main_count_name">Выберите количество</div>
+
+                  <div className="c_main_count_name">Выберите количество</div>
                   <div className="c_main_count">
-                    <div className="c_main_count_minus"></div>
-                    <div className="c_main_count_h">123</div>
-                    <div  className="c_main_count_plus"></div>
-                  </div> */}
+                    <div className="c_main_count_minus" onClick={() => setProductQuantity(prev => prev <= 0 ? 0 : prev - 1)}></div>
+                    <div className="c_main_count_h">{productQuantity}</div>
+                    <div className="c_main_count_plus" onClick={() => setProductQuantity(prev => prev + 1)}></div>
+                  </div>
+
                 </div>
               </div>
               <div className="c_main_down">
