@@ -82,7 +82,10 @@ const Header = () => {
                                     <div className="head_l_2"></div>
                                     <div className="head_l_3"></div>
                                 </div>
-                                <div className="head_name">{getText('header_1')}</div>
+
+                                <div className="head_name" style={{ pointerEvents: "none" }}>
+                                    {getText('header_1')}
+                                </div>
 
                                 <Link to="/"><img src="/img/logo_2.png" alt="" className="head_box_logo" /></Link>
 

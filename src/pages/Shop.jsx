@@ -100,6 +100,7 @@ const Shop = () => {
         localStorage.setItem("PRODUCT_ID", JSON.stringify(id))
         navigate('/card')
     }
+
     return (
         <>
             <Header />
@@ -136,7 +137,7 @@ const Shop = () => {
                                                         return (
                                                             <div key={index} className="shop_filtr_box">
                                                                 <div className="shop_filtr_left">
-                                                                    <input onClick={() => setFilterBrand(item.name)} type="radio" name="brand" id="2" className="shop_chek" />
+                                                                    <input onClick={() => setFilterBrand(item.name)} type="checkbox" name="brand" id="2" className="shop_chek" />
 
                                                                     <div className="shop_filtr_h">{item.name}</div></div>
                                                                 <div className="shop_filtr_right">
@@ -145,6 +146,7 @@ const Shop = () => {
                                                             </div>
                                                         )
                                                     })}
+
                                                     <div onClick={() => setFilterBrand('')} className="shop_filtr_clean">{getText("shop_filtr_clean")}</div>
                                                 </div>
                                             </div>
@@ -184,7 +186,6 @@ const Shop = () => {
                                                                     <div>
                                                                         <div onClick={() => detail(item.id)} className="main_box_img">
                                                                             <img src={item.get_image} alt="" className="main_img" />
-
                                                                         </div>
                                                                         <div className="main_h">
                                                                             {item.name.slice(0, 100)}...

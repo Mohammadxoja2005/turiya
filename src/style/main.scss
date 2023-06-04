@@ -989,13 +989,13 @@ html {
   }
 
   .swiper-button-prev {
-    background-image: url('/images/prev.png');
+    background-image: url("/images/prev.png");
     width: 50px;
     height: 50px;
   }
 
   .swiper-button-next {
-    background-image: url('/images/next.png');
+    background-image: url("/images/next.png");
     width: 50px;
     height: 50px;
   }
@@ -2695,7 +2695,7 @@ html {
     }
 
     .swiper-button-next {
-      background-image: url('../images/c_main_next.png');
+      background-image: url("../images/c_main_next.png");
       background-repeat: no-repeat;
       background-size: cover;
       width: 56px;
@@ -4104,15 +4104,18 @@ html {
           align-items: center;
 
           .shop_chek {
-            border-radius: 50%;
+            border-radius: 2px;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
             margin-right: 10px;
             width: 20px;
             height: 20px;
-            border: 2px solid #999;
+            border: 1px solid #999;
             transition: 0.2s all linear;
+            background: #ffffff;
+            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
 
             &:checked {
               border: 6px solid #02897a;
