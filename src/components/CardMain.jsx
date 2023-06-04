@@ -28,8 +28,6 @@ const CardMain = () => {
   const currect = useRef([])
   const [change, setChange] = useState(false);
 
-
-
   const handleRating = (rate) => {
     setRating(rate)
   }
@@ -94,7 +92,7 @@ const CardMain = () => {
                     return (
                       <SwiperSlide key={index}>
                         <div className="c_main_swiper_box">
-                          <img alt="" src={item.get_image} />
+                          <img className='c_main_img' alt="" src={item.get_image} />
                         </div>
                       </SwiperSlide>
                     )
@@ -115,12 +113,11 @@ const CardMain = () => {
                     return (
                       <SwiperSlide key={index}>
                         <div className="c_main_swiper_box_2">
-                          <img alt="" src={item.get_image} />
+                          <img className='c_main_box2_img' alt="" src={item.get_image} />
                         </div>
                       </SwiperSlide>
                     )
                   })}
-
                 </Swiper>
               </div>
             </div>
@@ -208,13 +205,6 @@ const CardMain = () => {
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
 
       {/* <div className="CardRecom">
         <div className="container">
