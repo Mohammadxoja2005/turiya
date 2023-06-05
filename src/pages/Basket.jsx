@@ -16,6 +16,7 @@ const Basket = () => {
     };
 
     let total_amount = 0
+
     function calc() {
         items.map((item) => {
             total_amount += item.quantity * item.price
@@ -48,14 +49,27 @@ const Basket = () => {
     }
     // const location = useLocation()
     const formData = new FormData()
+
+    // console.log('BASKET', JSON.parse(localStorage.getItem('cartItems'))) 
+
     formData.append('products', items)
+
     const order = () => {
-        axios.post(API_PATH + 'order/stripe/', formData)
-            .then((res) => {
+        const products = localStorage.getItem('cartItems');
+        const userToken = localStorage.getItem('userToken');
+
+        if (!userToken) {
+            nav('/login')
+            return;
+        }
+
+        axios.post(API_PATH + 'order/stripe/', JSON.parse(products))
+            .then((response) => {
                 // location.assign(res)
-                window.location.replace(res.data.url)
-                console.log(res);
+                console.log(response);
+                window.location.replace(response.data.url)
             })
+
     }
 
     return (

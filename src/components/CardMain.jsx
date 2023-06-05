@@ -27,13 +27,29 @@ const CardMain = () => {
   const saveBtns = useRef([])
   const currect = useRef([])
   const [change, setChange] = useState(false)
-  const [productQuantity, setProductQuantity] = useState(0);
+  const [productQuantity, setProductQuantity] = useState(1);
 
   const handleRating = (rate) => {
     setRating(rate)
   }
 
-  const getProduct = () => {
+
+  const imagesData = [
+    {
+      id: 4,
+      get_image: "http://95.130.227.110/media/product_images/Rectangle_406_cUdmEh3.png",
+    },
+    {
+      id: 5,
+      get_image: "http://95.130.227.110/media/product_images/Me.jpg",
+    },
+    {
+      id: 6,
+      get_image: "http://95.130.227.110/media/product_images/photo_2023-04-24_23-23-14.jpg",
+    }
+  ]
+
+  useEffect(() => {
     axios.get(API_PATH + `product/${id}/`)
       .then((res => {
         axios.get(API_PATH + `product/?cat=${res.data.category}`)
@@ -42,34 +58,16 @@ const CardMain = () => {
           }))
         setData(res.data)
       }))
-  }
-
-  console.log(data.images)
-
-  const imagesData = [
-    {
-      id: 1,
-      get_image: "http://95.130.227.110/media/product_images/Rectangle_406_cUdmEh3.png",
-    },
-    {
-      id: 2,
-      get_image: "http://95.130.227.110/media/product_images/Me.jpg",
-    },
-    {
-      id: 3,
-      get_image: "http://95.130.227.110/media/product_images/photo_2023-04-24_23-23-14.jpg",
-    }
-  ]
-
-  useEffect(() => {
-    getProduct();
   }, [])
 
+  console.log("data", data.images);
+
   const handleAddToCart = () => {
-    const product = { ...data, quantity: 1 };
+    const product = { ...data, quantity: productQuantity };
     addToCart(dispatch, product);
     setTimeout(() => {
     }, 3500);
+
   };
 
   const handleAddToWishlist = (item, index) => {
@@ -89,7 +87,6 @@ const CardMain = () => {
 
   };
 
-
   return (
     <>
       <div className="CardMain">
@@ -98,26 +95,30 @@ const CardMain = () => {
             <div className="col-lg-5">
 
               <div className="swiper_box">
-                <Swiper
-                  loop={true}
-                  spaceBetween={10}
-                  navigation={true}
-                  // thumbs={{ swiper: thumbsSwiper }}
-                  modules={[FreeMode, Navigation, Thumbs]}
-                  className="mySwiper2"
-                >
-                  {data.images && data.images.map((item) => {
-                    return (
-                      <SwiperSlide key={item.id}>
-                        <div className="c_main_swiper_box">
-                          <img className='c_main_img' alt="" src={item.get_image} />
-                        </div>
-                      </SwiperSlide>
-                    )
-                  })}
-
-                </Swiper>
-
+                {!data.images || data.images.length === 0 ? (
+                  <div>No images available</div>
+                ) :
+                  (
+                    <Swiper
+                      loop={true}
+                      spaceBetween={10}
+                      navigation={true}
+                      // thumbs={{ swiper: thumbsSwiper }}
+                      modules={[FreeMode, Navigation, Thumbs]}
+                      className="mySwiper2"
+                    >
+                      {data.images && data.images.map((item, index) => {
+                        return (
+                          <SwiperSlide key={item.id}>
+                            <div className="c_main_swiper_box">
+                              <img className='c_main_img' alt="" src={item.get_image} />
+                            </div>
+                          </SwiperSlide>
+                        )
+                      })
+                      }
+                    </Swiper>
+                  )}
                 <Swiper
                   onSwiper={setThumbsSwiper}
                   loop={true}
@@ -178,7 +179,7 @@ const CardMain = () => {
 
                   <div className="c_main_count_name">Выберите количество</div>
                   <div className="c_main_count">
-                    <div className="c_main_count_minus" onClick={() => setProductQuantity(prev => prev <= 0 ? 0 : prev - 1)}></div>
+                    <div className="c_main_count_minus" onClick={() => setProductQuantity(prev => prev <= 1 ? 1 : prev - 1)}></div>
                     <div className="c_main_count_h">{productQuantity}</div>
                     <div className="c_main_count_plus" onClick={() => setProductQuantity(prev => prev + 1)}></div>
                   </div>
@@ -202,11 +203,14 @@ const CardMain = () => {
                 {getText("c_desc_name")}
               </div>
             </div>
+
             <div className="col-12">
+
               <div className="c_desc_text">
                 <div className="c_desc_h">{getText("c_desc_1")}</div>
                 <div className="c_desc_p">{data.brand}</div>
               </div>
+
               <div className="c_desc_text">
                 <div className="c_desc_h">{getText("c_desc_2")}</div>
                 {data.colors && data.colors.map((item, index) => {
@@ -215,14 +219,17 @@ const CardMain = () => {
                   )
                 })}
               </div>
+
               <div className="c_desc_text">
                 <div className="c_desc_h">{getText("c_desc_3")}</div>
                 <div className="c_desc_p">{data.made_in}</div>
               </div>
+
               <div className="c_desc_text">
                 <div className="c_desc_h">{getText("c_desc_4")}</div>
                 <div className="c_desc_p">{data.characteristic}</div>
               </div>
+
             </div>
           </div>
         </div>

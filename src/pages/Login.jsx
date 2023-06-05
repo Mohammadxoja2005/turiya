@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import { LOGIN } from '../redux/actions/actions.js/authAction'
+import axios from 'axios'
+import { API_PATH } from '../tools/constats'
 
 const Login = () => {
 
@@ -13,7 +15,15 @@ const Login = () => {
 
     const login = (e) => {
         e.preventDefault()
-        dispatch(LOGIN(loginPhone, loginPassword, nav))
+        // dispatch(LOGIN(loginPhone, loginPassword, nav)) 
+
+        axios.post(`${API_PATH}user/login/`, { email: loginPhone, password: loginPassword })
+            .then((response) => {
+                console.log(response);
+                localStorage.setItem('userToken', response.data.token);
+            }).then(() => {
+                nav('/profile')
+            })
     }
 
     return (

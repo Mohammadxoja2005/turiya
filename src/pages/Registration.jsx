@@ -9,15 +9,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Registration = () => {
+    const dispatch = useDispatch()
+    const nav = useNavigate()
 
-    const notify = () => toast("Wow so easy!");
-
+    const notify = () => toast("registered successfully");
 
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [code, setCode] = useState('')
-    const nav = useNavigate();
+    const [verifyStatus, setVerifyStatus] = useState(false);
 
     // const navigate = useNavigate()
     //     const Register = () => {
@@ -32,42 +33,81 @@ const Registration = () => {
     //             })
     //     }
 
-
-    const dispatch = useDispatch()
-
     const registration = (e) => {
         e.preventDefault()
+
         localStorage.setItem("PHONE", JSON.stringify(phone))
         localStorage.setItem("PASSWORD", JSON.stringify(password))
-        dispatch(REGISTER(phone, password, nav))
+
+        // dispatch(REGISTER(phone, password, nav))
+
+        axios.post(`${API_PATH}user/register/`, {
+            email: phone,
+            password: password,
+            password2: password2
+
+        }).then((response) => {
+            setVerifyStatus(true);
+        })
+
+    }
+
+    const verifyEmail = (e) => {
+        e.preventDefault();
+
+        axios.post(`${API_PATH}user/verify-register/`, { email: phone, code: code })
+            .then((verifyResponse) => {
+                notify()
+                nav('/login')
+            })
     }
 
     return (
         <>
+            <ToastContainer />
             <div className="Registration">
                 <div className="container">
                     <div className="row">
                         <div className="col-12 d-flex justify-content-center">
                             <form onSubmit={registration} action="">
                                 <div className="registr_box">
+
                                     <div className="registr_name">
                                         Регистрация
                                     </div>
                                     <div className="registr_h">
                                         Ваш Email  <span style={{ color: "red" }}>*</span>
                                     </div>
-                                    <input value={phone} onChange={e => setPhone(e.target.value)} required placeholder='+998' type="text" name="" id="" className="registr_inp" />
+                                    <input value={phone} onChange={e => setPhone(e.target.value)} required placeholder='' type="text" name="" id="" className="registr_inp" />
                                     <div className="registr_h">
                                         Установите пароль <span style={{ color: "red" }}>*</span>
                                     </div>
                                     <input value={password} onChange={e => setPassword(e.target.value)} required placeholder='' type="text" name="" id="" className="registr_inp" />
+
                                     <div className="registr_h">
                                         Подтвердите пароль  <span style={{ color: "red" }}>*</span>
                                     </div>
+
                                     <input value={password2} onChange={e => setPassword2(e.target.value)} required placeholder='' type="text" name="" id="" className="registr_inp" />
-                                    <button type='submit' className="register_reg">Регистрация</button>
+
+                                    {verifyStatus ?
+                                        <>
+                                            <div className="registr_h">
+                                                Введите код отправленный на ваш email  <span style={{ color: "red" }}>*</span>
+                                            </div>
+
+                                            <input value={code} onChange={e => setCode(e.target.value)} placeholder='' type="text" name="" id="" className="registr_inp" />
+                                        </>
+                                        : null}
+
+                                    {verifyStatus
+                                        ?
+                                        <button type='submit' onClick={verifyEmail} className="register_reg">Отправить код</button>
+                                        :
+                                        <button type='submit' onClick={registration} className="register_reg">Регистрация</button>
+                                    }
+
                                     <Link to='/login' className="register_in">Войти</Link>
-                                    <ToastContainer />
                                 </div>
                             </form>
                         </div>

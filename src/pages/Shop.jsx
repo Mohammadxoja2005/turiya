@@ -8,8 +8,6 @@ import { Rating } from 'react-simple-star-rating'
 import { getText } from '../locales'
 import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
 
-
-
 const Shop = () => {
     const dispatch = useContext(WishlistDispatchContext);
     // const [cat, setCat] = useState(JSON.parse(localStorage.getItem('CAT_ID') || ''))
@@ -22,7 +20,7 @@ const Shop = () => {
     const saveBtns = useRef([]);
     const currect = useRef([])
     const [filterColors, setFilterColors] = useState('')
-    const [filterBrand, setFilterBrand] = useState('')
+    const [filterBrand, setFilterBrand] = useState([])
 
 
     const handleAddToWishlist = (item, index) => {
@@ -76,6 +74,7 @@ const Shop = () => {
             }))
 
     }
+
     const navigate = useNavigate()
 
     const getFilter = () => {
@@ -92,13 +91,28 @@ const Shop = () => {
         if (filterColors.length < 1 && filterBrand.length < 1) {
             getProducts();
         }
+
         getBrand();
         getColors();
         getCamp();
+
     }, [filterColors, filterBrand])
+
     const detail = (id) => {
         localStorage.setItem("PRODUCT_ID", JSON.stringify(id))
         navigate('/card')
+    }
+
+    const addFilterBrand = (brand) => {
+        const filterFindIndex = filterBrand.indexOf(brand);
+
+        if (filterFindIndex !== -1) {
+            filterBrand.splice(filterFindIndex, 1);
+        } else {
+            filterBrand.push(brand);
+        }
+
+        setFilterBrand([...filterBrand])
     }
 
     return (
@@ -137,7 +151,13 @@ const Shop = () => {
                                                         return (
                                                             <div key={index} className="shop_filtr_box">
                                                                 <div className="shop_filtr_left">
-                                                                    <input onClick={() => setFilterBrand(item.name)} type="checkbox" name="brand" id="2" className="shop_chek" />
+                                                                    <input
+                                                                        onClick={(e) => addFilterBrand(e.target.value)}
+                                                                        type="checkbox"
+                                                                        name="brand"
+                                                                        value={`${item.name}`}
+                                                                        id="2"
+                                                                        className="shop_chek" />
 
                                                                     <div className="shop_filtr_h">{item.name}</div></div>
                                                                 <div className="shop_filtr_right">
@@ -146,6 +166,26 @@ const Shop = () => {
                                                             </div>
                                                         )
                                                     })}
+
+                                                    {/* {brand && brand.map((item, index) => {
+                                                        return (
+                                                            <div key={index} className="shop_filtr_box">
+                                                                <div className="shop_filtr_left">
+                                                                    <input
+                                                                        onClick={(e) => addFilterBrand(e.target.value)}
+                                                                        type="checkbox"
+                                                                        name="brand"
+                                                                        value={`${index}`}
+                                                                        id="2"
+                                                                        className="shop_chek" />
+
+                                                                    <div className="shop_filtr_h">{index}</div></div>
+                                                                <div className="shop_filtr_right">
+                                                                    <div className="shop_filtr_p">{item.products_count}</div>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })} */}
 
                                                     <div onClick={() => setFilterBrand('')} className="shop_filtr_clean">{getText("shop_filtr_clean")}</div>
                                                 </div>
