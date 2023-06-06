@@ -19,7 +19,7 @@ const Shop = () => {
     const [rating, setRating] = useState(0)
     const saveBtns = useRef([]);
     const currect = useRef([])
-    const [filterColors, setFilterColors] = useState('')
+    const [filterColors, setFilterColors] = useState([])
     const [filterBrand, setFilterBrand] = useState([])
 
 
@@ -69,35 +69,36 @@ const Shop = () => {
     }
 
     const getProducts = () => {
-        axios.get(API_PATH + `product/?cat=${''}`)
+        axios.get(API_PATH + `product/`)
             .then((res => {
                 setProducts(res.data)
             }))
-
     }
 
     const navigate = useNavigate()
 
-    const getFilter = () => {
-        axios.get(API_PATH + `product/?color=${filterColors}&&brand=${filterBrand}`)
-            .then((res => {
-                setProducts(res.data)
-            }))
-    }
+    // const getFilter = () => {
+    //     axios.get(API_PATH + `product/?color=${filterColors}&&brand=${filterBrand}`)
+    //         .then((res => {
+    //             setProducts(res.data)
+    //         }))
+    // }
 
     useEffect(() => {
-        if (filterColors.length > 1 || filterBrand.length > 1) {
-            getFilter()
-        }
-        if (filterColors.length < 1 && filterBrand.length < 1) {
-            getProducts();
-        }
+        // if (filterColors.length > 1 || filterBrand.length > 1) {
+        //     getFilter()
+        // } 
+
+        // if (filterColors.length < 1 && filterBrand.length < 1) {
+        //     getProducts();
+        // }
 
         getBrand();
         getColors();
-        getCamp();
+        getCamp(); 
+        getProducts();
 
-    }, [filterColors, filterBrand])
+    }, [])
 
     const detail = (id) => {
         localStorage.setItem("PRODUCT_ID", JSON.stringify(id))
@@ -115,6 +116,29 @@ const Shop = () => {
 
         setFilterBrand([...filterBrand])
     }
+
+    const addFilterColor = (color) => {
+        const filterFindIndex = filterColors.indexOf(color);
+
+        if (filterFindIndex !== -1) {
+            filterColors.splice(filterFindIndex, 1);
+        } else {
+            filterColors.push(color);
+        }
+
+        setFilterColors([...filterColors])
+    }
+
+    useEffect(() => {
+        axios.post(`${API_PATH}product/filter/`, {
+            brands: filterBrand,
+            colors: filterColors
+        })
+            .then((response) => {
+                setProducts(response.data);
+            })
+
+    }, [filterBrand, filterColors])
 
     return (
         <>
@@ -156,7 +180,7 @@ const Shop = () => {
                                                                         onClick={(e) => addFilterBrand(e.target.value)}
                                                                         type="checkbox"
                                                                         name="brand"
-                                                                        value={`${item.name}`}
+                                                                        value={item.id}
                                                                         id="2"
                                                                         className="shop_chek" />
 
@@ -199,9 +223,14 @@ const Shop = () => {
                                                     {/* <input placeholder='Поиск' className='shop_filtr_inp' type="text" name="" id="" /> */}
                                                     {color && color.map((item, index) => {
                                                         return (
-                                                            <div key={index} className="shop_filtr_box">
+                                                            <div key={item.id} className="shop_filtr_box">
                                                                 <div className="shop_filtr_left">
-                                                                    <input onClick={() => setFilterColors(item.name)} type="radio" name='filter' id='1' className="shop_chek" />
+                                                                    <input onClick={(e) => addFilterColor(e.target.value)}
+                                                                        value={item.id}
+                                                                        type="checkbox"
+                                                                        name='filter'
+                                                                        id='1'
+                                                                        className="shop_chek" />
                                                                     <div className="shop_filtr_h">{item.name}</div></div>
                                                                 <div className="shop_filtr_right">
                                                                     <div className="shop_filtr_p">{item.products_count}</div>

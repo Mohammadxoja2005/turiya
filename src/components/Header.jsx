@@ -102,8 +102,8 @@ const Header = () => {
                                 <img src={`${location.pathname === '/' ? '/img/icon_house_2.png' : '/img/icon_house.png'}`} alt="" className="head_img" />
                                 <div className="head_h">{getText('header_2')}</div>
                             </Link>
-                            <Link to='/shop' className={`head_box_2 ${location.pathname === '/shop' ? 'active' : ''}`}>
-                                <img src={`${location.pathname === '/shop' ? '/img/icon_buy_2.png' : '/img/icon_buy.png'}`}
+                            <Link to='/shop/1' className={`head_box_2 ${location.pathname === '/shop' ? 'active' : ''}`}>
+                                <img src={`${location.pathname === `/shop/1` ? '/img/icon_buy_2.png' : '/img/icon_buy.png'}`}
                                     alt="" className="head_img" />
                                 <div className="head_h">{getText('header_3')}</div>
                             </Link>
