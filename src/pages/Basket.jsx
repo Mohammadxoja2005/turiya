@@ -58,17 +58,25 @@ const Basket = () => {
         const products = localStorage.getItem('cartItems');
         const userToken = localStorage.getItem('userToken');
 
-        if (!userToken) {
-            nav('/login')
-            return;
-        }
+        const config = {
+            headers: {
+                Authorization: `token ${userToken}`
+            },
+        };
 
-        axios.post(API_PATH + 'order/stripe/', JSON.parse(products))
+        axios.post(API_PATH + 'user/checkout/', {}, config)
             .then((response) => {
-                // location.assign(res)
                 console.log(response);
-                window.location.replace(response.data.url)
+                if (response.status == 200) {
+                    axios.post(API_PATH + 'order/stripe/', JSON.parse(products))
+                        .then((response) => {
+                            window.location.replace(response.data.url)
+                        })
+                }
             })
+            .catch((error) => {
+                nav('/login');
+            });
 
     }
 

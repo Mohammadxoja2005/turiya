@@ -8,7 +8,7 @@ import { Rating } from 'react-simple-star-rating'
 import { getText } from '../locales'
 import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
 
-const Shop = () => {
+const ProductShow = () => {
     const dispatch = useContext(WishlistDispatchContext);
     // const [cat, setCat] = useState(JSON.parse(localStorage.getItem('CAT_ID') || ''))
     const [like, setLike] = useState()
@@ -281,4 +281,4 @@ const Shop = () => {
     )
 }
 
-export default Shop
+export default ProductShow

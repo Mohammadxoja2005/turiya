@@ -18,6 +18,7 @@ import Profile from "./pages/Profile";
 import Public from "./pages/Public";
 import Registration from "./pages/Registration";
 import Shop from "./pages/Shop";
+import ProductShow from "./pages/ProductShop";
 import Verify from "./pages/Verify";
 import Index from "./pages/payment/Payment";
 
@@ -42,7 +43,8 @@ function App() {
                 <Route element={<Login />} path="/login" />
                 <Route element={<Profile />} path="/profile" />
                 <Route element={<Shop />} path="/shop" />
-                <Route path="/success" element={<Message />} />
+                <Route element={<ProductShow />} path="/shop/:filterId" />
+                <Route path="/success/:uuid" element={<Message />} />
                 <Route path="/checkout" element={<Index />} />
               </Routes>
               <Footer />
