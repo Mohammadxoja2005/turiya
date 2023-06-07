@@ -60,14 +60,12 @@ const CardMain = () => {
       }))
   }, [])
 
-  console.log("data", data.images);
-
   const handleAddToCart = () => {
     const product = { ...data, quantity: productQuantity };
+
     addToCart(dispatch, product);
     setTimeout(() => {
     }, 3500);
-
   };
 
   const handleAddToWishlist = (item, index) => {

@@ -56,7 +56,7 @@ const reducer = (state, action) => {
           return item;
         });
         cartItemss = [...items];
-      } 
+      }
       return {
         ...state,
         items: cartItemss,

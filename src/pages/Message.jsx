@@ -1,18 +1,22 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { API_PATH } from '../tools/constats';
 
 const Message = ({ message }) => {
     const { uuid } = useParams();
     const products = localStorage.getItem('cartItems');
+    const location = localStorage.getItem('location');
     const userToken = localStorage.getItem('userToken');
+    const navigate = useNavigate();
+
     const [status, setStatus] = useState(false);
 
     const config = {
         headers: {
             'Authorization': `token ${userToken}`,
-            'uuid': `${uuid}`
+            'uuid': `${uuid}`,
+            'location': `${location}`
         },
     };
 
@@ -25,7 +29,11 @@ const Message = ({ message }) => {
         if (status) {
             axios.post(`${API_PATH}order/create/`, JSON.parse(products), config)
                 .then((response) => {
-                    console.log(response)
+                    localStorage.removeItem('cartItems')
+                    localStorage.removeItem('location')
+                })
+                .then(() => {
+                    navigate('/profile')
                 })
                 .catch((error) => {
                     console.log(error)

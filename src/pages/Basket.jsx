@@ -9,6 +9,7 @@ import { getText } from '../locales';
 const Basket = () => {
     const { items, isCartOpen } = useContext(CartStateContext);
     const dispatch = useContext(CartDispatchContext);
+    const nav = useNavigate()
     // console.log(items);
 
     const handleRemove = (productId) => {
@@ -16,21 +17,19 @@ const Basket = () => {
     };
 
     let total_amount = 0
-
+    console.log(items);
     function calc() {
         items.map((item) => {
-            total_amount += item.quantity * item.price
+            total_amount += item.quantity * item.new_price
         })
     }
 
     calc();
 
-    const nav = useNavigate()
 
     const redirect = () => {
 
         const userId = localStorage.getItem('turiya');
-        // console.log(API_PATH);
 
         axios.post(`${API_PATH}user/checkout/`, {}, {
             headers: {
@@ -47,15 +46,14 @@ const Basket = () => {
         })
         nav('/checkout')
     }
+
     // const location = useLocation()
     const formData = new FormData()
-
-    // console.log('BASKET', JSON.parse(localStorage.getItem('cartItems'))) 
 
     formData.append('products', items)
 
     const order = () => {
-        const products = localStorage.getItem('cartItems');
+
         const userToken = localStorage.getItem('userToken');
 
         const config = {
@@ -66,13 +64,7 @@ const Basket = () => {
 
         axios.post(API_PATH + 'user/checkout/', {}, config)
             .then((response) => {
-                console.log(response);
-                if (response.status == 200) {
-                    axios.post(API_PATH + 'order/stripe/', JSON.parse(products))
-                        .then((response) => {
-                            window.location.replace(response.data.url)
-                        })
-                }
+                nav('/location')
             })
             .catch((error) => {
                 nav('/login');
@@ -188,8 +180,6 @@ const Basket = () => {
                                 </div>
                             )
                         })}
-
-
 
                         {items.map((product) => {
                             return (

@@ -21,6 +21,7 @@ import Shop from "./pages/Shop";
 import ProductShow from "./pages/ProductShop";
 import Verify from "./pages/Verify";
 import Index from "./pages/payment/Payment";
+import OrderLocation from "./pages/OrderLocation";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
                 <Route element={<Profile />} path="/profile" />
                 <Route element={<Shop />} path="/shop" />
                 <Route element={<ProductShow />} path="/shop/:filterId" />
+                <Route element={<OrderLocation />} path="/location" />
                 <Route path="/success/:uuid" element={<Message />} />
                 <Route path="/checkout" element={<Index />} />
               </Routes>

@@ -47,22 +47,23 @@ const Profile = () => {
     }
 
     const getOrders = () => {
-        axios.get(API_PATH + 'order/list/', {
+        const userToken = localStorage.getItem('userToken');
+
+        const config = {
             headers: {
-                'Authorization': `Token ${token}`,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                Authorization: `token ${userToken}`,
             }
-        })
+        }
+
+        axios.get(API_PATH + 'order/list/', config)
             .then((res) => {
                 setOrder(res.data)
-                console.log("   order", res.data);
+                console.log("order", res.data);
             })
     }
 
     useEffect(() => {
         getOrders();
-        console.log();
     }, [])
 
     return (
@@ -172,6 +173,7 @@ const Profile = () => {
                                                         </div>
                                                         <div className="col-3">
                                                             <div className="tab_text_name">
+                                                                {/* {item.city_or_town} */}
                                                                 {item.card_items && item.card_items.map((item2, index2) => {
                                                                     return (
                                                                         <div key={index2} className="div">
@@ -183,13 +185,7 @@ const Profile = () => {
                                                         </div>
                                                         <div className="col-2">
                                                             <div className="tab_text_name">
-                                                                {item.card_items && item.card_items.map((item2, index2) => {
-                                                                    return (
-                                                                        <div key={index2} className="div">
-                                                                            {item2.quantity}
-                                                                        </div>
-                                                                    )
-                                                                })}
+                                                                {item.get_count}
                                                             </div>
                                                         </div>
                                                         <div className="col-2">
