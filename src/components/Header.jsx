@@ -7,6 +7,7 @@ import { API_PATH } from '../tools/constats';
 import { getText } from '../locales'
 
 const Header = () => {
+    const nav = useNavigate()
     const [activeTab, setActiveTab] = useState('1');
     const [burger, setBurger] = useState()
     const [catalog, setCatalog] = useState([])
@@ -24,8 +25,6 @@ const Header = () => {
                 setCatalog(res.data)
             }))
     }
-
-    const nav = useNavigate()
 
     const getProductbyCategory = (category_id) => {
         axios.get(API_PATH + `product/?cat=${category_id}`)
@@ -177,7 +176,7 @@ const Header = () => {
                                                         <div className="header_2_h_2">{item2.name}</div>
                                                         {item2.three_subcategories && item2.three_subcategories.map((item3, index3) => {
                                                             return (
-                                                                <div onClick={() => (getProductbyCategory(item3.id))} key={index3}>
+                                                                <div onClick={() => nav(`/shop/${item2.id}`)} key={index3}>
                                                                     <div className="header_2_p">{item3.name}</div>
                                                                 </div>
                                                             )

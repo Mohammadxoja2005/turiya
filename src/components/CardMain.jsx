@@ -52,7 +52,7 @@ const CardMain = () => {
   useEffect(() => {
     axios.get(API_PATH + `product/${id}/`)
       .then((res => {
-        axios.get(API_PATH + `product/?cat=${res.data.category}`)
+        axios.get(API_PATH + `product/?cat=${id}`)
           .then((res => {
             setData2(res.data)
           }))

@@ -1,6 +1,6 @@
 // export const API_PATH = "https://dilshodev.uz/api/v1/";
 
-export const API_PATH = "http://192.168.68.227:8000/api/v1/";
+export const API_PATH = "https://dilshodev.uz/api/v1/";
 
 // export const API_PATH = "http://95.130.227.110/api/v1/";
 

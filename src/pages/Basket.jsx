@@ -17,7 +17,7 @@ const Basket = () => {
     };
 
     let total_amount = 0
-    console.log(items);
+
     function calc() {
         items.map((item) => {
             total_amount += item.quantity * item.new_price
