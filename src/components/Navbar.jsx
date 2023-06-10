@@ -103,6 +103,7 @@ const Navbar = () => {
                                 <option className='nav_h' selected={getLanguage() === 'en'} value="en">English</option>
                             </select>
                         </div>
+
                         <Link to="/favourite" className="nav_box">
                             <div className="nav_box_2">
                                 <div className="nav_circle">{wishlistQuantity}</div>

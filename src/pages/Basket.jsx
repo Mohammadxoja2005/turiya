@@ -10,7 +10,7 @@ const Basket = () => {
     const { items, isCartOpen } = useContext(CartStateContext);
     const dispatch = useContext(CartDispatchContext);
     const nav = useNavigate()
-    // console.log(items);
+    const products = JSON.parse(localStorage.getItem('cartItems'))
 
     const handleRemove = (productId) => {
         return removeFromCart(dispatch, productId);
@@ -25,7 +25,6 @@ const Basket = () => {
     }
 
     calc();
-
 
     const redirect = () => {
 
@@ -143,11 +142,13 @@ const Basket = () => {
                                         </div>
                                     )
                                 })}
-                                <button onClick={order} className="bas_2_a">{getText("bas_2_h_4")}</button>
+                                {!products.length == 0 ?
+                                    <button onClick={order} className="bas_2_a">{getText("bas_2_h_4")}</button>
+                                    : <div>{getText("baset_empty")}</div>
+                                }
+
                             </div>
                         </div>
-
-
 
                         {items.map((product) => {
                             return (

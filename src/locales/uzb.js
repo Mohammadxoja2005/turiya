@@ -64,4 +64,5 @@ export const uz = {
   tab_parol_h_1: `Eski parol`,
   tab_parol_h_2: `Yangi parol`,
   tab_parol_h_3: `Parolni takrorlash`,
+  baset_empty: "Savatcha bo'sh"
 };

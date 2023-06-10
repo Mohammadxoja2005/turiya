@@ -61,4 +61,5 @@ export const en = {
   tab_parol_h_1: `Old password`,
   tab_parol_h_2: `New password`,
   tab_parol_h_3: `Repeat Password`,
+  baset_empty: "Basket is empty"
 };

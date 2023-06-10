@@ -64,4 +64,5 @@ export const ru = {
   tab_parol_h_1: `Старый пароль`,
   tab_parol_h_2: `Новый пароль`,
   tab_parol_h_3: `Повторить пароль`,
+  baset_empty: "Корзинка пустая"
 };
