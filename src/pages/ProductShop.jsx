@@ -131,6 +131,30 @@ const ProductShow = () => {
         setFilterColors([...filterColors])
     }
 
+    const clearFilterBrand = () => {
+        filterBrand.length = 0;
+
+        const checkboxInputs = document.querySelectorAll('[data-checkbox="brand-input"]')
+
+        checkboxInputs.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+
+        setFilterBrand(filterBrand)
+    }
+
+    const clearColorBrand = () => {
+        filterColors.length = 0;
+
+        const checkboxInputs = document.querySelectorAll('[data-checkbox="color-input"]')
+
+        checkboxInputs.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+
+        setFilterColors(filterColors)
+    }
+
     useEffect(() => {
         axios.post(`${API_PATH}product/filter/`, {
             brands: filterBrand,
@@ -150,7 +174,7 @@ const ProductShow = () => {
                         <div className="col-12">
                             {camp && camp.slice(0, 1).map((item, index) => {
                                 return (
-                                    <div key={index} className="shop_box" style={{ backgroundImage: `url(${item.get_image})` }}>
+                                    <div key={item.id} className="shop_box" style={{ backgroundImage: `url(${item.get_image})` }}>
                                         <div className="shop_text">
                                             <div className="shop_text_2">
                                                 <div className="shop_name">{item.name}</div>
@@ -173,14 +197,15 @@ const ProductShow = () => {
                                                         {getText("shop_filtr_name")}
                                                     </div>
                                                     {/* <input placeholder='Поиск' className='shop_filtr_inp' type="text" name="" id="" /> */}
-                                                    {brand && brand.map((item, index) => {
+                                                    {brand && brand.map((item) => {
                                                         return (
-                                                            <div key={index} className="shop_filtr_box">
+                                                            <div key={item.id} className="shop_filtr_box">
                                                                 <div className="shop_filtr_left">
                                                                     <input
                                                                         onClick={(e) => addFilterBrand(e.target.value)}
                                                                         type="checkbox"
                                                                         name="brand"
+                                                                        data-checkbox="brand-input"
                                                                         value={item.id}
                                                                         id="2"
                                                                         className="shop_chek" />
@@ -193,27 +218,7 @@ const ProductShow = () => {
                                                         )
                                                     })}
 
-                                                    {/* {brand && brand.map((item, index) => {
-                                                        return (
-                                                            <div key={index} className="shop_filtr_box">
-                                                                <div className="shop_filtr_left">
-                                                                    <input
-                                                                        onClick={(e) => addFilterBrand(e.target.value)}
-                                                                        type="checkbox"
-                                                                        name="brand"
-                                                                        value={`${index}`}
-                                                                        id="2"
-                                                                        className="shop_chek" />
-
-                                                                    <div className="shop_filtr_h">{index}</div></div>
-                                                                <div className="shop_filtr_right">
-                                                                    <div className="shop_filtr_p">{item.products_count}</div>
-                                                                </div>
-                                                            </div>
-                                                        )
-                                                    })} */}
-
-                                                    <div onClick={() => setFilterBrand('')} className="shop_filtr_clean">{getText("shop_filtr_clean")}</div>
+                                                    <div onClick={() => clearFilterBrand()} className="shop_filtr_clean">{getText("shop_filtr_clean")}</div>
                                                 </div>
                                             </div>
                                             <div className="col-12 mt-5">
@@ -222,13 +227,14 @@ const ProductShow = () => {
                                                         {getText("shop_filtr_name_2")}
                                                     </div>
                                                     {/* <input placeholder='Поиск' className='shop_filtr_inp' type="text" name="" id="" /> */}
-                                                    {color && color.map((item, index) => {
+                                                    {color && color.map((item) => {
                                                         return (
                                                             <div key={item.id} className="shop_filtr_box">
                                                                 <div className="shop_filtr_left">
                                                                     <input onClick={(e) => addFilterColor(e.target.value)}
                                                                         type="checkbox"
                                                                         name='filter'
+                                                                        data-checkbox="color-input"
                                                                         value={item.id}
                                                                         id='1'
                                                                         className="shop_chek" />
@@ -239,7 +245,7 @@ const ProductShow = () => {
                                                             </div>
                                                         )
                                                     })}
-                                                    <div onClick={() => setFilterColors('')} className="shop_filtr_clean">{getText("shop_filtr_clean")}</div>
+                                                    <div onClick={() => clearColorBrand()} className="shop_filtr_clean">{getText("shop_filtr_clean")}</div>
                                                 </div>
                                             </div>
                                         </div>

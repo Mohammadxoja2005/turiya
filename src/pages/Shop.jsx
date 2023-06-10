@@ -28,13 +28,11 @@ const Shop = () => {
         saveBtns.current[index].style.background = "#02897A";
         saveBtns.current[index].style.color = "#FFFFFF ";
         currect.current[index].src = "/img/right.png ";
-        // document.getElementById(index).setAttribute('style', 'background:#000') 
 
         const product = { ...item, quantity: 1 };
         addToWishlist(dispatch, product);
 
     };
-
 
     const handleRating = (rate) => {
         setRating(rate)
@@ -77,27 +75,11 @@ const Shop = () => {
 
     const navigate = useNavigate()
 
-    // const getFilter = () => {
-    //     axios.get(API_PATH + `product/?color=${filterColors}&&brand=${filterBrand}`)
-    //         .then((res => {
-    //             setProducts(res.data)
-    //         }))
-    // }
-
     useEffect(() => {
-        // if (filterColors.length > 1 || filterBrand.length > 1) {
-        //     getFilter()
-        // } 
-
-        // if (filterColors.length < 1 && filterBrand.length < 1) {
-        //     getProducts();
-        // }
-
         getBrand();
         getColors();
-        getCamp(); 
+        getCamp();
         getProducts();
-
     }, [])
 
     const detail = (id) => {
@@ -128,6 +110,13 @@ const Shop = () => {
 
         setFilterColors([...filterColors])
     }
+
+    const clearFilterBrand = () => {
+        filterBrand.length = 0;
+        setFilterBrand(filterBrand)
+        console.log('working')
+    }
+
 
     useEffect(() => {
         axios.post(`${API_PATH}product/filter/`, {
@@ -172,9 +161,9 @@ const Shop = () => {
                                                         {getText("shop_filtr_name")}
                                                     </div>
                                                     {/* <input placeholder='Поиск' className='shop_filtr_inp' type="text" name="" id="" /> */}
-                                                    {brand && brand.map((item, index) => {
+                                                    {brand && brand.map((item) => {
                                                         return (
-                                                            <div key={index} className="shop_filtr_box">
+                                                            <div key={item.id} className="shop_filtr_box">
                                                                 <div className="shop_filtr_left">
                                                                     <input
                                                                         onClick={(e) => addFilterBrand(e.target.value)}
@@ -192,27 +181,7 @@ const Shop = () => {
                                                         )
                                                     })}
 
-                                                    {/* {brand && brand.map((item, index) => {
-                                                        return (
-                                                            <div key={index} className="shop_filtr_box">
-                                                                <div className="shop_filtr_left">
-                                                                    <input
-                                                                        onClick={(e) => addFilterBrand(e.target.value)}
-                                                                        type="checkbox"
-                                                                        name="brand"
-                                                                        value={`${index}`}
-                                                                        id="2"
-                                                                        className="shop_chek" />
-
-                                                                    <div className="shop_filtr_h">{index}</div></div>
-                                                                <div className="shop_filtr_right">
-                                                                    <div className="shop_filtr_p">{item.products_count}</div>
-                                                                </div>
-                                                            </div>
-                                                        )
-                                                    })} */}
-
-                                                    <div onClick={() => setFilterBrand('')} className="shop_filtr_clean">{getText("shop_filtr_clean")}</div>
+                                                    <div onClick={() => console.log("working..")} className="shop_filtr_clean">{getText("shop_filtr_clean")}</div>
                                                 </div>
                                             </div>
                                             <div className="col-12 mt-5">
@@ -290,8 +259,6 @@ const Shop = () => {
                                                             </div>
                                                         )
                                                     })}
-
-
 
                                                 </div>
                                             </div>
