@@ -86,7 +86,7 @@ const Deal = () => {
 
                         {deal && deal.map((item, index) => {
                             return (
-                                <div key={index} className="col-lg-4 col-sm-6 mb-4">
+                                <div key={item.id} className="col-lg-4 col-sm-6 mb-4">
                                     <div onClick={() => getNavigate()} className="deal_box">
                                         <img src={item.get_image} alt="" className="deal_img" />
                                         <div className="deal_text">
@@ -112,9 +112,9 @@ const Deal = () => {
                         <div className="col-lg-8" id="sales">
                             <div className="row">
                                 <div className="col-12"><div className="deal_name_2">Cо скидкой</div></div>
-                                {sale && sale.map((item, index) => {
+                                {sale && sale.slice(0,4).map((item, index) => {
                                     return (
-                                        <div key={index} className="col-lg-4 mb-sm-4 mb-3 col-6 deal_main">
+                                        <div key={item.id} className="col-lg-4 mb-sm-4 mb-3 col-6 deal_main">
                                             <div className="main_main">
                                                 <div>
                                                     <div onClick={() => detail(item.id)} className="main_box_img">
@@ -157,8 +157,6 @@ const Deal = () => {
                                         </div>
                                     )
                                 })}
-
-
 
                             </div>
                         </div>

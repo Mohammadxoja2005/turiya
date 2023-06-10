@@ -103,7 +103,7 @@ const HeadMain = () => {
                                     <option value="">qanaqadir</option>
                                 </select> */}
                                 <div className="row">
-                                    {prod && prod.map((item, index) => {
+                                    {prod && prod.slice(0,6).map((item, index) => {
                                         return (
                                             <div key={index} className="col-lg-3 col-6 mb-sm-4 mb-3 main_col">
                                                 <div className="main_main">
