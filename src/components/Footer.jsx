@@ -1,8 +1,21 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { getText } from '../locales'
+import { API_PATH } from '../tools/constats'
+import axios from 'axios'
 
 const Footer = () => {
+
+    const [subCategory, setSubCatgory] = useState();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get(API_PATH + `product/category/1/`)
+            .then((res => {
+                setSubCatgory(res.data.subcategories);
+            }))
+    }, [])
+
     return (
         <>
             <div className="Footer">
@@ -25,15 +38,17 @@ const Footer = () => {
                             </div>
                         </div>
                         <div className="col-12 d-flex flex-lg-row flex-column justify-content-between align-items-lg-start align-items-center ">
-                            <Link to="" className="foot_a">Женская одежда</Link>
-                            <Link to="" className="foot_a">Женские сумки</Link>
-                            <Link to="" className="foot_a">Женские аксессуары</Link>
-                            <Link to="" className="foot_a">Женская обувь</Link>
-                            <Link to="" className="foot_a">Косметика</Link>
-                            <Link to="" className="foot_a">Мужчинам</Link>
-                            <Link to="" className="foot_a">Дом</Link>
-                            <Link to="" className="foot_a">Игрушки</Link>
-                            <Link to="" className="foot_a">Подарки & Новый год</Link>
+                            {subCategory && subCategory.slice(0, 8).map((category) => {
+                                return (
+                                    <>
+                                        <Link onClick={() => {
+                                            window.location.reload()
+                                            navigate(`/shop/${category.id}`)
+                                        }} to={`/shop/${category.id}`} className="foot_a">{category.name}</Link>
+                                    </>
+
+                                )
+                            })}
                         </div>
                         <div className="col-12 foot_soc d-lg-flex d-none">
                             <div className="foot_soc_box foot_soc_box_2">

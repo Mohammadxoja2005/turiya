@@ -8,6 +8,7 @@ import { getText } from '../locales'
 
 const Header = () => {
     const nav = useNavigate()
+    const location = useLocation()
     const [activeTab, setActiveTab] = useState('1');
     const [burger, setBurger] = useState()
     const [catalog, setCatalog] = useState([])
@@ -31,7 +32,6 @@ const Header = () => {
             .then((res => {
                 setProduct(res.data)
                 localStorage.setItem('CAT_ID', category_id)
-                console.log(res.data)
                 nav('/shop')
             }))
     }
@@ -48,7 +48,6 @@ const Header = () => {
         axios.get(API_PATH + `product/category/${itemId}/`)
             .then((res => {
                 setSubCategory(res.data.subcategories);
-                console.log(subCategory);
             }))
     }, [itemId])
 
@@ -60,8 +59,6 @@ const Header = () => {
                 setMobileCatalog(response.data);
             })
     }, []);
-
-    const location = useLocation()
 
     const toggle = tab => {
         if (activeTab !== tab) setActiveTab(tab);
