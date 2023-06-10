@@ -114,7 +114,6 @@ const Shop = () => {
     const clearFilterBrand = () => {
         filterBrand.length = 0;
         setFilterBrand(filterBrand)
-        console.log('working')
     }
 
 

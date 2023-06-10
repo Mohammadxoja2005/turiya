@@ -2,7 +2,7 @@
 
 const language = localStorage.getItem("turiya-language");
 
-export const API_PATH = `https://dilshodev.uz/${language}/api/v1/`;
+export const API_PATH = `https://dilshodev.uz/${!language ? "ru" : language}/api/v1/`;
 
 // export const API_PATH = `https://dilshodev.uz/api/v1`;
 
