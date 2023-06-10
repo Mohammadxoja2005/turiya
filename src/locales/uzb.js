@@ -1,4 +1,4 @@
-export const uzb = {
+export const uz = {
   nav_1: `Tanlangan`,
   nav_2: `Savatcha`,
   nav_3: `Profil`,

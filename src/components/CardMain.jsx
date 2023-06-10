@@ -34,21 +34,6 @@ const CardMain = () => {
   }
 
 
-  const imagesData = [
-    {
-      id: 4,
-      get_image: "http://95.130.227.110/media/product_images/Rectangle_406_cUdmEh3.png",
-    },
-    {
-      id: 5,
-      get_image: "http://95.130.227.110/media/product_images/Me.jpg",
-    },
-    {
-      id: 6,
-      get_image: "http://95.130.227.110/media/product_images/photo_2023-04-24_23-23-14.jpg",
-    }
-  ]
-
   useEffect(() => {
     axios.get(API_PATH + `product/${id}/`)
       .then((res => {

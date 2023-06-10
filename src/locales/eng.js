@@ -1,4 +1,4 @@
-export const eng = {
+export const en = {
   nav_1: `Favorite`,
   nav_2: `Basket`,
   nav_3: `Profile`,

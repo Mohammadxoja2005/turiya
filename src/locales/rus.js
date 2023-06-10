@@ -1,4 +1,4 @@
-export const rus = {
+export const ru = {
   nav_1: `Избранное`,
   nav_2: `Корзина`,
   nav_3: `Профиль`,

@@ -1,6 +1,10 @@
 // export const API_PATH = "https://dilshodev.uz/api/v1/";
 
-export const API_PATH = "https://dilshodev.uz/api/v1/";
+const language = localStorage.getItem("turiya-language");
+
+export const API_PATH = `https://dilshodev.uz/${language}/api/v1/`;
+
+// export const API_PATH = `https://dilshodev.uz/api/v1`;
 
 // export const API_PATH = "http://95.130.227.110/api/v1/";
 

@@ -98,9 +98,9 @@ const Navbar = () => {
                         <div className="nav_box">
                             <img src="/img/icon_world.png" alt="" className="nav_icon" />
                             <select onChange={changeLanguage} className='nav_h' name="" id="">
-                                <option className='nav_h' selected={getLanguage() === 'uzb'} value="uzb">O'zbekcha</option>
-                                <option className='nav_h' selected={getLanguage() === 'rus'} value="rus">Русский</option>
-                                <option className='nav_h' selected={getLanguage() === 'eng'} value="eng">English</option>
+                                <option className='nav_h' selected={getLanguage() === 'uz'} value="uz">O'zbekcha</option>
+                                <option className='nav_h' selected={getLanguage() === 'ru'} value="ru">Русский</option>
+                                <option className='nav_h' selected={getLanguage() === 'en'} value="en">English</option>
                             </select>
                         </div>
                         <Link to="/favourite" className="nav_box">
@@ -142,9 +142,9 @@ const Navbar = () => {
                             <div className="nav_2_box">
                                 <img src="/img/media_lang.png" alt="" className="nav_2_img" />
                                 <select onChange={changeLanguage} className='nav_2_sel' name="" id="">
-                                    <option className='nav_2_opt' selected={getLanguage() === 'uzb'} value="uzb">O'zbekcha</option>
-                                    <option className='nav_2_opt' selected={getLanguage() === 'rus'} value="rus">Русский</option>
-                                    <option className='nav_2_opt' selected={getLanguage() === 'eng'} value="eng">English</option>
+                                    <option className='nav_2_opt' selected={getLanguage() === 'uz'} value="uz">O'zbekcha</option>
+                                    <option className='nav_2_opt' selected={getLanguage() === 'ru'} value="ru">Русский</option>
+                                    <option className='nav_2_opt' selected={getLanguage() === 'en'} value="en">English</option>
                                 </select>
                             </div>
                         </div>
