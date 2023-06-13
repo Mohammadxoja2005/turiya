@@ -34,6 +34,11 @@ const reducer = (state, action) => {
           return item;
         });
         cartItems = [...items];
+
+        const stringCartItems = JSON.stringify(cartItems);
+
+        localStorage.setItem("cartItems", stringCartItems)
+
       } else {
         cartItems = [...state.items, action.payload.cartItem];
       }
@@ -56,6 +61,10 @@ const reducer = (state, action) => {
           return item;
         });
         cartItemss = [...items];
+
+        const stringCartItems = JSON.stringify(cartItemss);
+
+        localStorage.setItem("cartItems", stringCartItems)
       }
       return {
         ...state,
@@ -122,14 +131,18 @@ const CartProvider = ({ children }) => {
     "cartItems",
     []
   );
+
   const persistedCartState = {
     isCartOpen: false,
     items: persistedCartItems || [],
   };
+
   const [state, dispatch] = useReducer(reducer, persistedCartState);
-  useEffect(() => {
-    setPersistedCartItems(state.items);
-  }, [JSON.stringify(state.items)]);
+
+  // useEffect(() => {
+  //   setPersistedCartItems(state.items);
+  // }, [JSON.stringify(state.items)]); 
+
   return (
     <CartDispatchContext.Provider value={dispatch}>
       <CartStateContext.Provider value={state}>

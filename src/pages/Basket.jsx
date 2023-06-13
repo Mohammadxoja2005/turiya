@@ -7,10 +7,11 @@ import axios from "axios";
 import { getText } from '../locales';
 
 const Basket = () => {
+    const nav = useNavigate()
     const { items, isCartOpen } = useContext(CartStateContext);
     const dispatch = useContext(CartDispatchContext);
-    const nav = useNavigate()
     const products = JSON.parse(localStorage.getItem('cartItems'))
+    // const products
 
     const handleRemove = (productId) => {
         return removeFromCart(dispatch, productId);
@@ -71,6 +72,18 @@ const Basket = () => {
 
     }
 
+    console.log("with out plus", products);
+
+    const increaseProductCount = (productId) => {
+        // console.log(products);
+        // products.forEach((productItem) => {
+        //     if (productItem.id == productId) {
+        //         productItem.quantity += 1;
+        //     }
+        // })
+        // console.log('changed', products);
+    }
+
     return (
         <>
             <Header />
@@ -88,7 +101,7 @@ const Basket = () => {
                         <div className="col-9">
                             {items.map((product) => {
                                 return (
-                                    <div className="bas_box">
+                                    <div key={product.id} className="bas_box">
                                         <div className="bas_left">
                                             <div onClick={() => handleRemove(product.id)} className="bas_bas">
                                                 <img src="/img/basket.png" alt="" className="bas_bas_img" />
@@ -105,9 +118,14 @@ const Basket = () => {
                                         </div>
                                         <div className="bas_line"></div>
                                         <div className="bas_cal">
-                                            <div onClick={() => addToCart(dispatch, product)} className="cal_plus">+</div>
+                                            <div onClick={() => {
+                                                // increaseProductCount(product.id)
+                                                addToCart(dispatch, product)
+                                            }} className="cal_plus">+</div>
                                             <div className="cal_num">{product.quantity}</div>
-                                            <div onClick={() => minusToCart(dispatch, product)} className="cal_minus">-</div>
+                                            <div onClick={() => {
+                                                minusToCart(dispatch, product)
+                                            }} className="cal_minus">-</div>
                                         </div>
                                     </div>
                                 )
