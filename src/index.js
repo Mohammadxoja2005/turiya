@@ -17,7 +17,11 @@ const store = createStore(
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-localStorage.setItem("turiya-language", "ru");
+const language = localStorage.getItem("turiya-language");
+
+if (!language) {
+  localStorage.setItem("turiya-language", "ru");
+}
 
 root.render(
   <React.StrictMode>
