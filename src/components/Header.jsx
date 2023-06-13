@@ -63,6 +63,7 @@ const Header = () => {
     const toggle = tab => {
         if (activeTab !== tab) setActiveTab(tab);
     }
+    // console.log(mobileCatalog)
 
     return (
         <Fragment>
@@ -257,12 +258,15 @@ const Header = () => {
                                                 </div>
 
                                                 {isSubClicked ?
-                                                    <div className={`head_4_box_3 ${isSubClicked ? 'active' : ''}`}>
-                                                        <div className="head_4_left">
-                                                            <div className="head_4_h">Sub_sub</div>
-                                                        </div>
-                                                    </div>
-
+                                                    subItem.three_subcategories.map((threeSubCategory) => {
+                                                        return (
+                                                            <div key={threeSubCategory.id} className={`head_4_box_3 ${isSubClicked ? 'active' : ''}`}>
+                                                                <div className="head_4_left">
+                                                                    <div className="head_4_h">{threeSubCategory.name}</div>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })
                                                     : null}
                                             </Fragment>
                                         )
@@ -273,7 +277,7 @@ const Header = () => {
                     })}
                 </div>
             </div>
-        </Fragment>
+        </Fragment >
     )
 }
 
