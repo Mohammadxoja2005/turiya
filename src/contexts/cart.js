@@ -38,13 +38,56 @@ const reducer = (state, action) => {
         cartItems = [...items];
 
         const stringCartItems = JSON.stringify(cartItems);
-
         localStorage.setItem("cartItems", stringCartItems);
+
+        const payMentDetail = {
+          allPrice: 0,
+          allQuantity: 0,
+          deliverPrice: 5000,
+        };
+
+        let allProductsPrice = 0;
+        let allProductQuantity = 0;
+
+        cartItems.map((product) => {
+          allProductsPrice += product.quantity * product.price;
+          allProductQuantity += product.quantity;
+        })
+
+        payMentDetail.allPrice = allProductsPrice;
+        payMentDetail.allQuantity = allProductQuantity;
+
+        const paymentDetailString = JSON.stringify(payMentDetail)
+
+        localStorage.setItem("paymentInfo", paymentDetailString)
 
       } else {
 
         cartItems = [...state.items, action.payload.cartItem];
         const stringCartItems = JSON.stringify(cartItems);
+
+        localStorage.setItem("cartItems", stringCartItems)
+
+        const payMentDetail = {
+          allPrice: 0,
+          allQuantity: 0,
+          deliverPrice: 5000,
+        };
+
+        let allProductsPrice = 0;
+        let allProductQuantity = 0;
+
+        cartItems.map((product) => {
+          allProductsPrice += product.quantity * product.price;
+          allProductQuantity += product.quantity;
+        })
+
+        payMentDetail.allPrice = allProductsPrice;
+        payMentDetail.allQuantity = allProductQuantity;
+
+        const paymentDetailString = JSON.stringify(payMentDetail)
+
+        localStorage.setItem("paymentInfo", paymentDetailString)
 
         localStorage.setItem("cartItems", stringCartItems);
       }
@@ -71,6 +114,27 @@ const reducer = (state, action) => {
         const stringCartItems = JSON.stringify(cartItemss);
 
         localStorage.setItem("cartItems", stringCartItems)
+
+        const payMentDetail = {
+          allPrice: 0,
+          allQuantity: 0,
+          deliverPrice: 5000,
+        };
+
+        let allProductsPrice = 0;
+        let allProductQuantity = 0;
+
+        cartItemss.map((product) => {
+          allProductsPrice += product.quantity * product.price;
+          allProductQuantity += product.quantity;
+        })
+
+        payMentDetail.allPrice = allProductsPrice;
+        payMentDetail.allQuantity = allProductQuantity;
+
+        const paymentDetailString = JSON.stringify(payMentDetail)
+
+        localStorage.setItem("paymentInfo", paymentDetailString)
       }
       return {
         ...state,
@@ -105,7 +169,7 @@ export const toggleCartPopup = (dispatch) => {
   });
 };
 
-export const addToCart = (dispatch, cartItem) => {
+export const addToCart = async (dispatch, cartItem) => {
   return dispatch({
     type: "ADD_TO_CART",
     payload: {
@@ -114,7 +178,7 @@ export const addToCart = (dispatch, cartItem) => {
   });
 };
 
-export const minusToCart = (dispatch, cartItem) => {
+export const minusToCart = async (dispatch, cartItem) => {
   return dispatch({
     type: "MINUS_TO_CART",
     payload: {
@@ -123,7 +187,7 @@ export const minusToCart = (dispatch, cartItem) => {
   });
 };
 
-export const removeFromCart = (dispatch, cartItemId) => {
+export const removeFromCart = async (dispatch, cartItemId) => {
   return dispatch({
     type: "REMOVE_FROM_CART",
     payload: {
@@ -131,6 +195,29 @@ export const removeFromCart = (dispatch, cartItemId) => {
     },
   });
 };
+
+// export const paymentBasket = () => {
+//   const products = JSON.parse(localStorage.getItem('cartItems'))
+
+//   const payMentDetail = {
+//     allPrice: 0,
+//     allQuantity: 0,
+//     deliverPrice: 5000,
+//   };
+
+//   let allProductsPrice = 0;
+//   let allProductQuantity = 0;
+
+//   products.map((product) => {
+//     allProductsPrice += product.quantity * product.price;
+//     allProductQuantity += product.quantity;
+//   })
+
+//   payMentDetail.allPrice = allProductsPrice;
+//   payMentDetail.allQuantity = allProductQuantity;
+
+//   setProductPayInfo(payMentDetail);
+// }
 
 export const clearCart = (dispatch) => {
   return dispatch({

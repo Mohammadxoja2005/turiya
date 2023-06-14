@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useCallback } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header'
 import { addToCart, CartDispatchContext, CartStateContext, minusToCart, removeFromCart } from '../contexts/cart';
@@ -7,19 +7,32 @@ import axios from "axios";
 import { getText } from '../locales';
 
 const Basket = () => {
+
     const nav = useNavigate()
     const { items, isCartOpen } = useContext(CartStateContext);
     const dispatch = useContext(CartDispatchContext);
     const products = JSON.parse(localStorage.getItem('cartItems'))
-    // const products
-    const [productPaymentInfo, setProductPayInfo] = useState();
+    // const [productPaymentInfo, setProductPayInfo] = useState();
+
+    const productPaymentInfo = JSON.parse(localStorage.getItem("paymentInfo"))
+    // const productPayment = JSON.parse(localStorage.getItem("paymentInfo"))
+
 
     const handleRemove = (productId) => {
-        return removeFromCart(dispatch, productId);
+        removeFromCart(dispatch, productId)
     };
 
-    useEffect(() => {
+    const increaseProduct = (dispatch, product) => {
+        addToCart(dispatch, product)
+    }
+
+    const decreaseProduct = (dispatch, product) => {
+        minusToCart(dispatch, product)
+    }
+
+    const paymentBasket = () => {
         if (products) {
+
             const payMentDetail = {
                 allPrice: 0,
                 allQuantity: 0,
@@ -37,9 +50,16 @@ const Basket = () => {
             payMentDetail.allPrice = allProductsPrice;
             payMentDetail.allQuantity = allProductQuantity;
 
-            setProductPayInfo(payMentDetail);
+            // const paymentDetailString = JSON.stringify(payMentDetail)
+
+            // localStorage.setItem('paymentInfo', paymentDetailString);
+            // setProductPayInfo(productPayment)
         }
-    }, [handleRemove, addToCart, minusToCart])
+    }
+
+    useEffect(() => {
+        paymentBasket()
+    }, [])
 
     let total_amount = 0
 
@@ -125,7 +145,10 @@ const Basket = () => {
                                 return (
                                     <div key={product.id} className="bas_box">
                                         <div className="bas_left">
-                                            <div onClick={() => handleRemove(product.id)} className="bas_bas">
+                                            <div onClick={() => {
+                                                handleRemove(product.id)
+                                            }
+                                            } className="bas_bas">
                                                 <img src="/img/basket.png" alt="" className="bas_bas_img" />
                                             </div>
                                             <div className="bas_prod">
@@ -142,11 +165,11 @@ const Basket = () => {
 
                                         <div className="bas_cal">
                                             <div onClick={() => {
-                                                addToCart(dispatch, product)
+                                                increaseProduct(dispatch, product)
                                             }} className="cal_plus">+</div>
                                             <div className="cal_num">{product.quantity}</div>
                                             <div onClick={() => {
-                                                minusToCart(dispatch, product)
+                                                decreaseProduct(dispatch, product)
                                             }} className="cal_minus">-</div>
                                         </div>
                                     </div>
@@ -161,7 +184,7 @@ const Basket = () => {
                                     <div className="bas_2_top">
                                         <div className="bas_2_text">
                                             <div className="bas_2_h">{getText("bas_2_h_1")} {productPaymentInfo.allQuantity} {getText("count")}</div>
-                                            <div className="bas_2_p">{total_amount} {getText("sum")}</div>
+                                            <div className="bas_2_p">{productPaymentInfo.allPrice} {getText("sum")}</div>
                                         </div>
                                         <div className="bas_2_text">
                                             <div className="bas_2_h">{getText("bas_2_h_2")}</div>
