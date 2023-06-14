@@ -42,8 +42,8 @@ const reducer = (state, action) => {
         localStorage.setItem("cartItems", stringCartItems);
 
       } else {
-        cartItems = [...state.items, action.payload.cartItem]; 
-        
+
+        cartItems = [...state.items, action.payload.cartItem];
         const stringCartItems = JSON.stringify(cartItems);
 
         localStorage.setItem("cartItems", stringCartItems);

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header'
 import { addToCart, CartDispatchContext, CartStateContext, minusToCart, removeFromCart } from '../contexts/cart';
@@ -12,12 +12,35 @@ const Basket = () => {
     const dispatch = useContext(CartDispatchContext);
     const products = JSON.parse(localStorage.getItem('cartItems'))
     // const products
+    const [productPaymentInfo, setProductPayInfo] = useState();
 
-    console.log(products);
 
     const handleRemove = (productId) => {
         return removeFromCart(dispatch, productId);
     };
+
+    useEffect(() => {
+        if (products) {
+            const payMentDetail = {
+                allPrice: 0,
+                allQuantity: 0,
+                deliverPrice: 5000,
+            };
+
+            let allProductsPrice = 0;
+            let allProductQuantity = 0;
+
+            products.map((product) => {
+                allProductsPrice += product.quantity * product.price;
+                allProductQuantity += product.quantity;
+            })
+
+            payMentDetail.allPrice = allProductsPrice;
+            payMentDetail.allQuantity = allProductQuantity;
+
+            setProductPayInfo(payMentDetail);
+        }
+    }, [handleRemove, addToCart, minusToCart])
 
     let total_amount = 0
 
@@ -71,10 +94,7 @@ const Basket = () => {
             .catch((error) => {
                 nav('/login');
             });
-
     }
-
-    console.log("with out plus", products);
 
     const increaseProductCount = (productId) => {
         // console.log(products);
@@ -85,6 +105,7 @@ const Basket = () => {
         // })
         // console.log('changed', products);
     }
+
 
     return (
         <>
@@ -119,9 +140,9 @@ const Basket = () => {
                                             </div>
                                         </div>
                                         <div className="bas_line"></div>
+
                                         <div className="bas_cal">
                                             <div onClick={() => {
-                                                // increaseProductCount(product.id)
                                                 addToCart(dispatch, product)
                                             }} className="cal_plus">+</div>
                                             <div className="cal_num">{product.quantity}</div>
@@ -136,34 +157,33 @@ const Basket = () => {
                         </div>
                         <div className="col-3 d-lg-block d-none">
                             <div className="bas_box_2">
-                                {items.map((product) => {
-                                    return (
-                                        <div className="bas_2_top">
-                                            <div className="bas_2_text">
-                                                <div className="bas_2_h">{getText("bas_2_h_1")} {product.quantity} {getText("count")}</div>
-                                                <div className="bas_2_p">{total_amount} {getText("sum")}</div>
-                                            </div>
-                                            <div className="bas_2_text">
-                                                <div className="bas_2_h">{getText("bas_2_h_2")}</div>
-                                                <div className="bas_2_p">{product.price_delivery ? `${product.price_delivery}` : '0'} {getText("sum")}</div>
-                                            </div>
-                                            {/* <div className="bas_2_text">
-                                                <div className="bas_2_h">Скидка</div>
-                                                <div className="bas_2_p">{product.new_price ? `${product.price - product.new_price}` : '0'} сум</div>
-                                            </div> */}
-                                            {/* <div className="bas_2_text">
-                                                <div className="bas_2_h">Налог</div>
-                                                <div className="bas_2_p">300 000 сум</div>
-                                            </div> */}
-                                            <div className="bas_2_sale">
-                                                <div className="bas_2_h_2">{getText("bas_2_h_3")}</div>
-                                                <div className="bas_2_p_2">{`${total_amount + product.price_delivery}`} {getText("sum")}</div>
-                                            </div>
-                                        </div>
-                                    )
-                                })}
 
-                                {!products.length == 0 ?
+                                {productPaymentInfo ?
+                                    <div className="bas_2_top">
+                                        <div className="bas_2_text">
+                                            <div className="bas_2_h">{getText("bas_2_h_1")} {productPaymentInfo.allQuantity} {getText("count")}</div>
+                                            <div className="bas_2_p">{total_amount} {getText("sum")}</div>
+                                        </div>
+                                        <div className="bas_2_text">
+                                            <div className="bas_2_h">{getText("bas_2_h_2")}</div>
+                                            <div className="bas_2_p">{productPaymentInfo.deliverPrice} {getText("sum")}</div>
+                                        </div>
+                                        {/* <div className="bas_2_text">
+                                            <div className="bas_2_h">Скидка</div>
+                                            <div className="bas_2_p">{product.new_price ? `${product.price - product.new_price}` : '0'} сум</div>
+                                        </div> */}
+                                        {/* <div className="bas_2_text">
+                                            <div className="bas_2_h">Налог</div>
+                                            <div className="bas_2_p">300 000 сум</div>
+                                        </div> */}
+                                        <div className="bas_2_sale">
+                                            <div className="bas_2_h_2">{getText("bas_2_h_3")}</div>
+                                            <div className="bas_2_p_2">{`${productPaymentInfo.allPrice + productPaymentInfo.deliverPrice}`} {getText("sum")}</div>
+                                        </div>
+                                    </div>
+                                    : null}
+
+                                {products.length != 0 ?
                                     <button onClick={order} className="bas_2_a">{getText("bas_2_h_4")}</button>
                                     : <div>{getText("baset_empty")}</div>
                                 }
