@@ -125,6 +125,7 @@ const Basket = () => {
         // console.log('changed', products);
     }
 
+    console.log(products);
 
     return (
         <>
@@ -158,7 +159,7 @@ const Basket = () => {
                                                 {product.name}
                                             </div>
                                             <div className="bas_sale">
-                                                {product.quantity * product.price} {getText("sum")}
+                                                {product.new_price != null ? product.quantity * product.new_price : product.quantity * product.price} {getText("sum")}
                                             </div>
                                         </div>
                                         <div className="bas_line"></div>

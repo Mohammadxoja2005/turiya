@@ -50,7 +50,7 @@ const reducer = (state, action) => {
         let allProductQuantity = 0;
 
         cartItems.map((product) => {
-          allProductsPrice += product.quantity * product.price;
+          allProductsPrice += product.new_price ? product.quantity * product.new_price : product.quantity * product.price;
           allProductQuantity += product.quantity;
         })
 
@@ -78,7 +78,7 @@ const reducer = (state, action) => {
         let allProductQuantity = 0;
 
         cartItems.map((product) => {
-          allProductsPrice += product.quantity * product.price;
+          allProductsPrice += product.new_price ? product.quantity * product.new_price : product.quantity * product.price;
           allProductQuantity += product.quantity;
         })
 
@@ -125,7 +125,7 @@ const reducer = (state, action) => {
         let allProductQuantity = 0;
 
         cartItemss.map((product) => {
-          allProductsPrice += product.quantity * product.price;
+          allProductsPrice += product.new_price ? product.quantity * product.new_price : product.quantity * product.price;
           allProductQuantity += product.quantity;
         })
 
