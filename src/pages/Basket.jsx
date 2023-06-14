@@ -14,7 +14,6 @@ const Basket = () => {
     // const products
     const [productPaymentInfo, setProductPayInfo] = useState();
 
-
     const handleRemove = (productId) => {
         return removeFromCart(dispatch, productId);
     };
@@ -158,7 +157,7 @@ const Basket = () => {
                         <div className="col-3 d-lg-block d-none">
                             <div className="bas_box_2">
 
-                                {productPaymentInfo ?
+                                {productPaymentInfo && products.length != 0 ?
                                     <div className="bas_2_top">
                                         <div className="bas_2_text">
                                             <div className="bas_2_h">{getText("bas_2_h_1")} {productPaymentInfo.allQuantity} {getText("count")}</div>
