@@ -23,6 +23,7 @@ const reducer = (state, action) => {
       const id = action.payload.cartItem.id;
       const isOld = state.items.map((item) => item.id).includes(id);
       let cartItems = null;
+
       if (isOld) {
         const items = state.items.map((item) => {
           if (item.id === id) {
@@ -33,14 +34,19 @@ const reducer = (state, action) => {
           }
           return item;
         });
+
         cartItems = [...items];
 
         const stringCartItems = JSON.stringify(cartItems);
 
-        localStorage.setItem("cartItems", stringCartItems)
+        localStorage.setItem("cartItems", stringCartItems);
 
       } else {
-        cartItems = [...state.items, action.payload.cartItem];
+        cartItems = [...state.items, action.payload.cartItem]; 
+        
+        const stringCartItems = JSON.stringify(cartItems);
+
+        localStorage.setItem("cartItems", stringCartItems);
       }
       return {
         ...state,
@@ -147,7 +153,7 @@ const CartProvider = ({ children }) => {
 
   // useEffect(() => {
   //   setPersistedCartItems(state.items);
-  // }, [JSON.stringify(state.items)]); 
+  // }, [JSON.stringify(state.items)]);
 
   return (
     <CartDispatchContext.Provider value={dispatch}>

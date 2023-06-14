@@ -13,6 +13,8 @@ const Basket = () => {
     const products = JSON.parse(localStorage.getItem('cartItems'))
     // const products
 
+    console.log(products);
+
     const handleRemove = (productId) => {
         return removeFromCart(dispatch, productId);
     };
@@ -160,6 +162,7 @@ const Basket = () => {
                                         </div>
                                     )
                                 })}
+
                                 {!products.length == 0 ?
                                     <button onClick={order} className="bas_2_a">{getText("bas_2_h_4")}</button>
                                     : <div>{getText("baset_empty")}</div>

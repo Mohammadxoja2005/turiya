@@ -33,7 +33,6 @@ const CardMain = () => {
     setRating(rate)
   }
 
-
   useEffect(() => {
     axios.get(API_PATH + `product/${id}/`)
       .then((res => {
@@ -48,7 +47,8 @@ const CardMain = () => {
   const handleAddToCart = () => {
     const product = { ...data, quantity: productQuantity };
 
-    addToCart(dispatch, product);
+    addToCart(dispatch, product); 
+    
     setTimeout(() => {
     }, 3500);
   };
