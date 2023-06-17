@@ -46,8 +46,8 @@ const CardMain = () => {
 
   const handleAddToCart = () => {
     const product = { ...data, quantity: productQuantity };
-    
-    console.log(product); 
+
+    console.log(product);
 
     addToCart(dispatch, product);
 
@@ -168,11 +168,12 @@ const CardMain = () => {
                     <div className="c_main_count_h">{productQuantity}</div>
                     <div className="c_main_count_plus" onClick={() => setProductQuantity(prev => prev + 1)}></div>
                   </div>
-
                 </div>
               </div>
               <div className="c_main_down">
-                <div onClick={handleAddToCart} className="c_main_btn">{getText("add_basket")}</div>
+                <div onClick={handleAddToCart} className="c_main_btn">
+                  {getText("add_basket")}
+                </div>
                 {/* <img src="/img/c_main_love.png" alt="" className="c_main_like" /> */}
                 <img src="/img/c_main_love_2.png" alt="" className="c_main_like_2" />
               </div>
@@ -214,7 +215,6 @@ const CardMain = () => {
                 <div className="c_desc_h">{getText("c_desc_4")}</div>
                 <div className="c_desc_p">{data.characteristic}</div>
               </div>
-
             </div>
           </div>
         </div>
