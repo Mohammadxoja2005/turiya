@@ -1022,7 +1022,7 @@ html {
 
   .headmain_container {
     width: 100%;
-    max-width: 1780px; 
+    max-width: 1780px;
     margin: auto;
   }
 
@@ -3044,6 +3044,8 @@ html {
   background-image: url(../images/back.png);
   background-attachment: fixed;
   background-repeat: no-repeat;
+  background-size: cover;
+
 
   .about_container {
     width: 100%;
@@ -3132,6 +3134,7 @@ html {
   background-image: url(../images/back.png);
   background-attachment: fixed;
   background-repeat: no-repeat;
+  background-size: cover;
 
   .politic_container {
     width: 100%;
@@ -3225,6 +3228,7 @@ html {
   background-image: url(../images/back.png);
   background-attachment: fixed;
   background-repeat: no-repeat;
+  background-size: cover;
 
   .public_container {
     width: 100%;
