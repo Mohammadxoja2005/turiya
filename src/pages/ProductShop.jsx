@@ -7,9 +7,11 @@ import { API_PATH } from '../tools/constats'
 import { Rating } from 'react-simple-star-rating'
 import { getText } from '../locales'
 import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
+import { addToCart, CartDispatchContext } from '../contexts/cart';
 
 const ProductShow = () => {
-    const dispatch = useContext(WishlistDispatchContext)
+    // const dispatch = useContext(WishlistDispatchContext) 
+    const dispatch = useContext(CartDispatchContext);
     const { filterId } = useParams()
     // const [cat, setCat] = useState(JSON.parse(localStorage.getItem('CAT_ID') || ''))
     const [like, setLike] = useState()
@@ -165,6 +167,16 @@ const ProductShow = () => {
 
     }, [filterBrand, filterColors])
 
+    const handleAddBasket = (data, quantity = 1) => {
+        const product = { ...data, quantity };
+        console.log(data, quantity)
+
+        addToCart(dispatch, product);
+
+        setTimeout(() => {
+        }, 3500);
+    }
+
     return (
         <>
             <Header />
@@ -261,9 +273,13 @@ const ProductShow = () => {
                                                             <div key={index} className="col-4 mb-4 deal_main">
                                                                 <div className="main_main">
                                                                     <div>
-                                                                        <div onClick={() => detail(item.id)} className="main_box_img">
-                                                                            <img src={item.get_image} alt="" className="main_img" />
-                                                                        </div>
+                                                                        {item.images.slice(0, 1).map((img) => {
+                                                                            return (
+                                                                                <div onClick={() => detail(item.id)} className="main_box_img">
+                                                                                    <img src={img.get_image} alt="" className="main_img" />
+                                                                                </div>
+                                                                            )
+                                                                        })}
                                                                         <div className="main_h">
                                                                             {item.name.slice(0, 100)}...
                                                                         </div>
@@ -286,8 +302,8 @@ const ProductShow = () => {
                                                                                 </div>
                                                                             </div>
                                                                             <div className="main_right">
-                                                                                <div data-index={item.id} ref={(element) => saveBtns.current.push(element)} onClick={() => handleAddToWishlist(item, index)} className='main_like_box'>
-                                                                                    <img data-index={item.id} ref={(element) => currect.current.push(element)} onClick={() => handleAddToWishlist(item, index)} src="/img/like.png" alt="" className="main_like" />
+                                                                                <div data-index={item.id} ref={(element) => saveBtns.current.push(element)} onClick={() => handleAddBasket(item, item.quantity)} className='main_like_box'>
+                                                                                    <img data-index={item.id} ref={(element) => currect.current.push(element)} onClick={() => handleAddBasket(item, item.quantity)} src="/img/like.png" alt="" className="main_like" />
                                                                                     <div className='main_like_h'>{getText('nav_2')}</div>
                                                                                 </div>
                                                                             </div>
