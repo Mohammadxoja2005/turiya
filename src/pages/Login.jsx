@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
@@ -12,6 +12,24 @@ const Login = () => {
     const [loginPassword, setLoginPassword] = useState('')
     const dispatch = useDispatch()
     const nav = useNavigate()
+
+    useEffect(() => {
+        const userToken = localStorage.getItem('userToken');
+
+        const config = {
+            headers: {
+                Authorization: `token ${userToken}`
+            },
+        };
+
+        axios.post(API_PATH + 'user/checkout/', {}, config)
+            .then((response) => {
+                nav('/profile')
+            })
+            .catch((error) => {
+                nav('/login');
+            });
+    }, [])
 
     const login = (e) => {
         e.preventDefault()

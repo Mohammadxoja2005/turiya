@@ -7,8 +7,10 @@ import { API_PATH } from '../tools/constats';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { getText } from '../locales'
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+    const nav = useNavigate();
     const [password, setPassword] = useState('')
     const [old_password, setOldPassword] = useState('')
     // const [conf_password, setConfPassword] = useState('')
@@ -64,13 +66,30 @@ const Profile = () => {
 
     useEffect(() => {
         getOrders();
+
+        const userToken = localStorage.getItem('userToken');
+
+        const config = {
+            headers: {
+                Authorization: `token ${userToken}`
+            },
+        };
+
+        axios.post(API_PATH + 'user/checkout/', {}, config)
+            .then((response) => {
+                nav('/profile')
+            })
+            .catch((error) => {
+                nav('/login');
+            });
     }, [])
+
+    const post = () => {
+    }
 
     return (
         <>
-
             <Header />
-
             <div className="Profile">
                 <div className="container">
                     <div className="row">

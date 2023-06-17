@@ -6,11 +6,13 @@ import { WishlistStateContext } from '../contexts/wishlist'
 import { getLanguage, getText } from '../locales'
 import { LANGUAGE } from '../tools/constats'
 import { USER_TOKEN } from '../tools/constats'
+import { API_PATH } from '../tools/constats'
+import axios from 'axios'
 
 const Navbar = () => {
-    const navigate = useNavigate()
+    const nav = useNavigate()
     const [navbar, setNavbar] = useState(false);
-    const [token, setToken] = useState((localStorage.getItem('turiya') || ''));
+    const [token, setToken] = useState((localStorage.getItem('userToken') || ''));
 
     const { items: cartItems, isCartOpen } = useContext(CartStateContext);
     const commonDispatch = useContext(CommonDispatchContext);
@@ -55,12 +57,21 @@ const Navbar = () => {
     }
 
     const post = () => {
-        if (token.length < 10) {
-            navigate('/login')
-        }
-        else {
-            navigate('/profile')
-        }
+        const userToken = localStorage.getItem('userToken');
+
+        const config = {
+            headers: {
+                Authorization: `token ${userToken}`
+            },
+        };
+
+        axios.post(API_PATH + 'user/checkout/', {}, config)
+            .then((response) => {
+                nav('/profile')
+            })
+            .catch((error) => {
+                nav('/login');
+            });
     }
 
     return (
