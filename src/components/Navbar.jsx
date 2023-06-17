@@ -104,7 +104,7 @@ const Navbar = () => {
                             </select>
                         </div>
 
-                        <Link to="/favourite" className="nav_box">
+                        {/* <Link to="/favourite" className="nav_box">
                             <div className="nav_box_2">
                                 <div className="nav_circle">{wishlistQuantity}</div>
                                 <img src="/img/icon_love.png" alt="" className="nav_icon" />
@@ -112,7 +112,7 @@ const Navbar = () => {
                             <div className="nav_h">
                                 {getText("nav_1")}
                             </div>
-                        </Link>
+                        </Link> */}
                         <Link to="basket" className="nav_box">
                             <div className="nav_box_2">
                                 <div className="nav_circle">{cartQuantity}</div>
