@@ -61,5 +61,9 @@ export const en = {
   tab_parol_h_1: `Old password`,
   tab_parol_h_2: `New password`,
   tab_parol_h_3: `Repeat Password`,
-  baset_empty: "Basket is empty"
+  baset_empty: "Basket is empty",
+  about_text_bullet1: "Turiya.uz - high quality of service, ensuring a faster and more convenient purchasing process.",
+  about_text_bullet2: "At Turiya.uz, 14% of customers have the opportunity to purchase goods on credit. Our team consists of young, ambitious, and hardworking individuals who strive to keep up with the times and continuously improve themselves. The members of our cohesive team approach every task professionally and creatively. It is only natural that you attract valuable clients!",
+  about_text_bullet3: "Turiya.uz - high quality of service, providing a faster and more convenient purchasing process.",
+  about_text_bullet4: "At Turiya.uz, 14% of customers have the opportunity to purchase goods on credit. Our team consists of young, ambitious, and hardworking individuals who strive to keep up with the times and continuously improve themselves. The members of our cohesive team approach every task professionally and creatively. It is only natural that you attract valuable clients!"
 };
