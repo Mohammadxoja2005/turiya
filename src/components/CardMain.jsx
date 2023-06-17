@@ -46,9 +46,11 @@ const CardMain = () => {
 
   const handleAddToCart = () => {
     const product = { ...data, quantity: productQuantity };
-
-    addToCart(dispatch, product); 
     
+    console.log(product); 
+
+    addToCart(dispatch, product);
+
     setTimeout(() => {
     }, 3500);
   };

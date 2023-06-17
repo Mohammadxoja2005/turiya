@@ -2,13 +2,15 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
+import { addToCart, CartDispatchContext } from '../contexts/cart';
 import { API_PATH } from '../tools/constats'
 import { Rating } from 'react-simple-star-rating'
 import { getText } from '../locales'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const HeadMain = () => {
-    const dispatch = useContext(WishlistDispatchContext);
+    // const dispatch = useContext(WishlistDispatchContext); 
+    const dispatch = useContext(CartDispatchContext);
     const [like, setLike] = useState()
     const [back, setBack] = useState([])
     const [prod, setProd] = useState([])
@@ -66,6 +68,20 @@ const HeadMain = () => {
 
     };
 
+    const handleAddBasket = (data, quantity = 1) => {
+        const product = { ...data, quantity };
+        console.log(data, quantity)
+
+        addToCart(dispatch, product);
+
+        setTimeout(() => {
+        }, 3500);
+    }
+
+    // const product = { ...data, quantity: productQuantity };
+
+    // addToCart(dispatch, product);
+
     return (
         <>
             <div className="top_2">
@@ -105,12 +121,16 @@ const HeadMain = () => {
                                 <div className="row">
                                     {prod && prod.slice(0, 6).map((item, index) => {
                                         return (
-                                            <div key={index} className="col-lg-3 col-6 mb-sm-4 mb-3 main_col">
+                                            <div key={item.id} className="col-lg-3 col-6 mb-sm-4 mb-3 main_col">
                                                 <div className="main_main">
                                                     <div>
-                                                        <div onClick={() => detail(item.id)} className="main_box_img">
-                                                            <img src={item.get_image} alt="" className="main_img" />
-                                                        </div>
+                                                        {item.images.slice(0, 1).map((img) => {
+                                                            return (
+                                                                <div onClick={() => detail(item.id)} className="main_box_img">
+                                                                    <img src={img.get_image} alt="" className="main_img" />
+                                                                </div>
+                                                            )
+                                                        })}
                                                         <div className="main_h">{item.name.slice(0, 80)}...
                                                         </div>
                                                     </div>
@@ -132,8 +152,8 @@ const HeadMain = () => {
                                                             </div>
 
                                                             <div className="main_right">
-                                                                <div data-index={item.id} ref={(element) => saveBtns.current.push(element)} onClick={() => handleAddToWishlist(item, index)} className='main_like_box'>
-                                                                    <img data-index={item.id} ref={(element) => currect.current.push(element)} onClick={() => handleAddToWishlist(item, index)} src="/img/like.png" alt="" className="main_like" />
+                                                                <div data-index={item.id} ref={(element) => saveBtns.current.push(element)} onClick={() => handleAddBasket(item, item.quantity)} className='main_like_box'>
+                                                                    <img data-index={item.id} ref={(element) => currect.current.push(element)} onClick={() => handleAddBasket(item, item.quantity)} src="/img/like.png" alt="" className="main_like" />
                                                                     <div className='main_like_h'>{getText('nav_2')}</div>
                                                                 </div>
                                                             </div>

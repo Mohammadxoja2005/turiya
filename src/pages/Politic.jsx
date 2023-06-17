@@ -34,7 +34,7 @@ const Politic = () => {
                         </div>
                         <div className="col-12">
                             <div className="pol_name">
-                                Политика
+                                {getText("header_5")}
                             </div>
 
                             <div>

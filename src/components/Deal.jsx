@@ -9,19 +9,21 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Rating } from 'react-simple-star-rating'
 import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
+import { addToCart, CartDispatchContext } from '../contexts/cart';
 import { getText } from '../locales'
 
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
 const Deal = () => {
+    const dispatch = useContext(CartDispatchContext);
+    // const dispatch = useContext(WishlistDispatchContext);
     const [like, setLike] = useState()
     const [deal, setDeal] = useState()
     const [sale, setSale] = useState()
     const navigate = useNavigate()
     const saveBtns = useRef([]);
     const currect = useRef([])
-    const dispatch = useContext(WishlistDispatchContext);
     const [change, setChange] = useState(false);
 
     const getSale = () => {
@@ -75,6 +77,17 @@ const Deal = () => {
         navigate('/card')
     }
 
+
+    const handleAddBasket = (data, quantity = 1) => {
+        const product = { ...data, quantity };
+        console.log(data, quantity)
+
+        addToCart(dispatch, product);
+
+        setTimeout(() => {
+        }, 3500);
+    }
+
     return (
         <>
             <div className="Deal">
@@ -112,14 +125,18 @@ const Deal = () => {
                         <div className="col-lg-8" id="sales">
                             <div className="row">
                                 <div className="col-12"><div className="deal_name_2">Cо скидкой</div></div>
-                                {sale && sale.slice(0,4).map((item, index) => {
+                                {sale && sale.slice(0, 4).map((item, index) => {
                                     return (
                                         <div key={item.id} className="col-lg-4 mb-sm-4 mb-3 col-6 deal_main">
                                             <div className="main_main">
                                                 <div>
-                                                    <div onClick={() => detail(item.id)} className="main_box_img">
-                                                        <img src={item.get_image} alt="" className="main_img" />
-                                                    </div>
+                                                    {item.images.slice(0, 1).map((img) => {
+                                                        return (
+                                                            <div onClick={() => detail(item.id)} className="main_box_img">
+                                                                <img src={img.get_image} alt="" className="main_img" />
+                                                            </div>
+                                                        )
+                                                    })}
                                                     <div className="main_h">{item.name.slice(0, 80)}...
                                                     </div>
                                                 </div>
@@ -146,8 +163,8 @@ const Deal = () => {
                                                         </div>
 
                                                         <div className="main_right">
-                                                            <div data-index={item.id} ref={(element) => saveBtns.current.push(element)} onClick={() => handleAddToWishlist(item, index)} className='main_like_box'>
-                                                                <img data-index={item.id} ref={(element) => currect.current.push(element)} onClick={() => handleAddToWishlist(item, index)} src="/img/like.png" alt="" className="main_like" />
+                                                            <div data-index={item.id} ref={(element) => saveBtns.current.push(element)} onClick={() => handleAddBasket(item, item.quantity)} className='main_like_box'>
+                                                                <img data-index={item.id} ref={(element) => currect.current.push(element)} onClick={() => handleAddBasket(item, item.quantity)} src="/img/like.png" alt="" className="main_like" />
                                                                 <div className='main_like_h'>{getText('nav_2')}</div>
                                                             </div>
                                                         </div>

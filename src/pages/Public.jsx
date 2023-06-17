@@ -34,7 +34,7 @@ const Public = () => {
                         </div>
                         <div className="col-12">
                             <div className="pub_name">
-                                Публичная оферта
+                                {getText("header_6")}
                             </div>
 
                             <div>
