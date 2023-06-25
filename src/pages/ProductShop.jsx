@@ -37,6 +37,7 @@ const ProductShow = () => {
 
     };
 
+    console.log(color);
 
     const handleRating = (rate) => {
         setRating(rate)
@@ -121,6 +122,8 @@ const ProductShow = () => {
     }
 
 
+    console.log(filterColors, filterBrand);
+
     const addFilterColor = (color) => {
         const filterFindIndex = filterColors.indexOf(color);
 
@@ -162,6 +165,7 @@ const ProductShow = () => {
             brands: filterBrand,
             colors: filterColors
         }).then((response) => {
+            console.log('data', response)
             setProducts(response.data);
         })
 
@@ -270,10 +274,10 @@ const ProductShow = () => {
 
                                                     {products && products.map((item, index) => {
                                                         return (
-                                                            <div key={index} className="col-4 mb-4 deal_main">
+                                                            <div key={item.id} className="col-4 mb-4 deal_main">
                                                                 <div className="main_main">
                                                                     <div>
-                                                                        {item.images.slice(0, 1).map((img) => {
+                                                                        {item?.images?.slice(0, 1).map((img) => {
                                                                             return (
                                                                                 <div onClick={() => detail(item.id)} className="main_box_img">
                                                                                     <img src={img.get_image} alt="" className="main_img" />

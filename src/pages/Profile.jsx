@@ -270,10 +270,10 @@ const Profile = () => {
 
 
 
-                                    <Link to='/' className="tab_out">
+                                    <div onClick={() => localStorage.remove('userToken')} className="tab_out">
                                         <img src="/img/out_2.png" alt="" />
                                         {getText("out")}
-                                    </Link>
+                                    </div>
 
                                 </TabPane>
                                 {/* <TabPane tabId="2" className=''>
