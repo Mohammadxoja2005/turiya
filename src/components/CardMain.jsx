@@ -175,7 +175,7 @@ const CardMain = () => {
                   {getText("add_basket")}
                 </div>
                 {/* <img src="/img/c_main_love.png" alt="" className="c_main_like" /> */}
-                <img src="/img/c_main_love_2.png" alt="" className="c_main_like_2" />
+                {/* <img src="/img/c_main_love_2.png" alt="" className="c_main_like_2" /> */}
               </div>
             </div>
           </div>
