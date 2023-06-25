@@ -19,8 +19,6 @@ const Profile = () => {
     const [token, setToken] = useState(localStorage.getItem('turiya'))
     const [order, setOrder] = useState([])
 
-    // old password new password repetation of new password -> success 
-
     const toggle = tab => {
         if (activeTab !== tab) setActiveTab(tab);
     }
@@ -34,7 +32,7 @@ const Profile = () => {
 
     const changePassword = (e) => {
         e.preventDefault();
-        // console.log(token)
+
         axios.patch(API_PATH + 'user/change-password/', formdata, {
             headers: {
                 'Authorization': `Token ${token}`,

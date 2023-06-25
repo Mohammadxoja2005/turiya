@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import { LOGIN, REGISTER, REGISTERVERIFY } from '../redux/actions/actions.js/authAction'
 import { API_PATH } from '../tools/constats'
+import { getText } from '../locales'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,8 +13,8 @@ const Registration = () => {
     const dispatch = useDispatch()
     const nav = useNavigate()
 
-    const notify = () => toast("registered successfully");
-    const notifyError = () => toast("password should match")
+    const notify = () => toast(getText('orderLocationNotify'));
+    const notifyError = () => toast(getText('passwordErr'))
 
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
@@ -44,8 +45,6 @@ const Registration = () => {
 
         localStorage.setItem("PHONE", JSON.stringify(phone))
         localStorage.setItem("PASSWORD", JSON.stringify(password))
-
-        // dispatch(REGISTER(phone, password, nav))
 
         axios.post(`${API_PATH}user/register/`, {
             email: phone,

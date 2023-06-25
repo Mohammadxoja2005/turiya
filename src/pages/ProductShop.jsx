@@ -8,6 +8,7 @@ import { Rating } from 'react-simple-star-rating'
 import { getText } from '../locales'
 import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
 import { addToCart, CartDispatchContext } from '../contexts/cart';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProductShow = () => {
     // const dispatch = useContext(WishlistDispatchContext) 
@@ -24,6 +25,8 @@ const ProductShow = () => {
     const currect = useRef([])
     const [filterColors, setFilterColors] = useState([])
     const [filterBrand, setFilterBrand] = useState([])
+
+    const notify = () => toast(getText('basketMsg'));
 
     const handleAddToWishlist = (item, index) => {
 
@@ -177,7 +180,10 @@ const ProductShow = () => {
         const product = { ...data, quantity };
         console.log(data, quantity)
 
-        addToCart(dispatch, product);
+        addToCart(dispatch, product)
+            .then(() => {
+                notify();
+            })
 
         setTimeout(() => {
         }, 3500);
@@ -187,6 +193,7 @@ const ProductShow = () => {
         <>
             <Header />
             <div className="Shop">
+                <ToastContainer />
                 <div className="container">
                     <div className="row">
                         <div className="col-12">

@@ -68,5 +68,16 @@ export const uz = {
   about_text_bullet1: "Turiya.uz - yuqori xizmat sifati, tezroq va qulay xarid jarayoni ta'minlash.",
   about_text_bullet2: "Turiya.uz-da, xaridorgilarning 14%si tovarni kredit orqali sotib olish huquqiga ega. Bizning jamoa yosh, g'ayratli va mehnatkash odamlardan iborat, ular vaqtdan dam olish va o'zlarini davom ettirishga harakat qilishni xohlaydilar. Bizning birgalikda jamoamiz har bir ishga professional va iqtidorli tarzda yaq approach qiladi. Tabiiyki, sizning bahosiz mijozlarni tanlab olasiz!",
   about_text_bullet3: "Turiya.uz - yuqori xizmat sifati, tezroq va qulay xarid jarayoni ta'minlash.",
-  about_text_bullet4: "Turiya.uz-da, xaridorgilarning 14%si tovarni kredit orqali sotib olish huquqiga ega. Bizning jamoa yosh, g'ayratli va mehnatkash odamlardan iborat, ular vaqtdan dam olish va o'zlarini davom ettirishga harakat qilishni xohlaydilar. Bizning birgalikda jamoamiz har bir ishga professional va iqtidorli tarzda yaq approach qiladi. Tabiiyki, sizning bahosiz mijozlarni tanlab olasiz!"
+  about_text_bullet4: "Turiya.uz-da, xaridorgilarning 14%si tovarni kredit orqali sotib olish huquqiga ega. Bizning jamoa yosh, g'ayratli va mehnatkash odamlardan iborat, ular vaqtdan dam olish va o'zlarini davom ettirishga harakat qilishni xohlaydilar. Bizning birgalikda jamoamiz har bir ishga professional va iqtidorli tarzda yaq approach qiladi. Tabiiyki, sizning bahosiz mijozlarni tanlab olasiz!",
+  address: "Manzilni kiriting",
+  contact: "Aloqa",
+  phone: "Telefon",
+  country: "Mamlakat",
+  region: "Viloyat",
+  citryortown: "Shahar yoki tuman",
+  zipcode: "Pochta indeksi",
+  orderLocationNotify: "Buyurtma muvaffaqiyatli ro'yhatdan o'tkazildi",
+  passwordErr: "Parol mos kelishi kerak",
+  inputEmptyErr: "Iltimos, barcha maydonlarni to'ldiring.", 
+  basketMsg: "Mahsulot muvaffaqiyatli qo'shildi"
 };
