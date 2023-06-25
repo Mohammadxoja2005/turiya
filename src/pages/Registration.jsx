@@ -13,6 +13,7 @@ const Registration = () => {
     const nav = useNavigate()
 
     const notify = () => toast("registered successfully");
+    const notifyError = () => toast("password should match")
 
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
@@ -35,6 +36,11 @@ const Registration = () => {
 
     const registration = (e) => {
         e.preventDefault()
+
+        if (password != password2) {
+            notifyError()
+            return;
+        }
 
         localStorage.setItem("PHONE", JSON.stringify(phone))
         localStorage.setItem("PASSWORD", JSON.stringify(password))
@@ -78,7 +84,7 @@ const Registration = () => {
                                     <div className="registr_h">
                                         Ваш Email  <span style={{ color: "red" }}>*</span>
                                     </div>
-                                    <input value={phone} onChange={e => setPhone(e.target.value)} required placeholder='' type="text" name="" id="" className="registr_inp" />
+                                    <input value={phone} onChange={e => setPhone(e.target.value)} required placeholder='' type="email" name="" id="" className="registr_inp" />
                                     <div className="registr_h">
                                         Установите пароль <span style={{ color: "red" }}>*</span>
                                     </div>

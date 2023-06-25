@@ -37,8 +37,6 @@ const ProductShow = () => {
 
     };
 
-    console.log(color);
-
     const handleRating = (rate) => {
         setRating(rate)
     }
@@ -87,7 +85,11 @@ const ProductShow = () => {
     //         .then((res => {
     //             setProducts(res.data)
     //         }))
-    // }
+    // } 
+
+    useEffect(() => {
+        getProducts();
+    }, [])
 
     useEffect(() => {
         // if (filterColors.length > 1 || filterBrand.length > 1) {
@@ -100,7 +102,6 @@ const ProductShow = () => {
         getBrand();
         getColors();
         getCamp();
-        getProducts();
 
     }, [filterColors, filterBrand])
 
@@ -168,8 +169,9 @@ const ProductShow = () => {
             console.log('data', response)
             setProducts(response.data);
         })
-
     }, [filterBrand, filterColors])
+
+    console.log(products);
 
     const handleAddBasket = (data, quantity = 1) => {
         const product = { ...data, quantity };
@@ -270,9 +272,7 @@ const ProductShow = () => {
                                         <div className="row">
                                             <div className="col-12">
                                                 <div className="row">
-
-
-                                                    {products && products.map((item, index) => {
+                                                    {products && products.map((item) => {
                                                         return (
                                                             <div key={item.id} className="col-4 mb-4 deal_main">
                                                                 <div className="main_main">
