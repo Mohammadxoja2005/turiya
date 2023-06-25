@@ -1,5 +1,6 @@
-import React, { useEffect, useState, Fragment } from 'react'
+import React, { useEffect, useState, Fragment, useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { CartStateContext } from '../contexts/cart'
 import { Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
 import axios from 'axios';
@@ -19,6 +20,9 @@ const Header = () => {
     let [head, setHead] = useState(false);
     const [head2, setHead2] = useState(false);
     const [mobileCatalog, setMobileCatalog] = useState([])
+    const { items: cartItems } = useContext(CartStateContext);
+
+    const cartQuantity = cartItems.length;
 
     const getCatalog = () => {
         axios.get(API_PATH + 'product/category/')
@@ -85,11 +89,18 @@ const Header = () => {
                                 </div>
 
                                 <Link to="/"><img src="/img/logo_2.png" alt="" className="head_box_logo" /></Link>
+                                {/* <Link to="basket" className="nav_box">
+                                    <div className="nav_box_2">
+                                        <div className="nav_circle">{cartQuantity}</div>
+                                        <img src="/img/icon_box.png" alt="" className="nav_icon" />
+                                    </div>
+                                </Link> */} 
 
-                                <div className="head_box_box">
-                                    <Link to="/favourite"><img src="/img/icon_love.png" alt="" className="head_box_love" /></Link>
+                                <Link to="basket" className="head_box_box">
+                                    <div style={{color: "black"}} >{cartQuantity}</div>
+                                    {/* <Link to="/favourite"><img src="/img/icon_love.png" alt="" className="head_box_love" /></Link> */}
                                     <Link to="/basket"><img src="/img/icon_box.png" alt="" className="head_box_buy" /></Link>
-                                </div>
+                                </Link>
 
                             </div>
                         </div>

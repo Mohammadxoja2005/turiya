@@ -149,7 +149,7 @@ const Navbar = () => {
                         <div className="col-12 d-flex justify-content-evenly">
                             <a onClick={post} className="nav_2_box">
                                 <img src="/img/media_prof.png" alt="" className="nav_2_img" />
-                                <div className="nav_2_name">{getText("nav_4")}</div>
+                                {/* <div className="nav_2_name">{getText("nav_4")}</div> */}
                             </a>
                             <div className="nav_2_box">
                                 <img src="/img/media_lang.png" alt="" className="nav_2_img" />
