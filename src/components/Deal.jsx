@@ -14,6 +14,7 @@ import { getText } from '../locales'
 
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Deal = () => {
     const dispatch = useContext(CartDispatchContext);
@@ -25,6 +26,8 @@ const Deal = () => {
     const saveBtns = useRef([]);
     const currect = useRef([])
     const [change, setChange] = useState(false);
+
+    const notify = () => toast(getText('basketMsg'));
 
     const getSale = () => {
         axios.get(API_PATH + 'product/?sale=1')
@@ -82,7 +85,10 @@ const Deal = () => {
         const product = { ...data, quantity };
         console.log(data, quantity)
 
-        addToCart(dispatch, product);
+        addToCart(dispatch, product)
+            .then(() => {
+                notify()
+            })
 
         setTimeout(() => {
         }, 3500);
@@ -90,6 +96,7 @@ const Deal = () => {
 
     return (
         <>
+            <ToastContainer />
             <div className="Deal">
                 <div className="deal_container">
                     <div className="row">

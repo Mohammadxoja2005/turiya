@@ -8,7 +8,7 @@ import { addToCart, CartDispatchContext } from '../contexts/cart';
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getText } from '../locales'
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function Interesting() {
@@ -19,7 +19,7 @@ function Interesting() {
 
     const [inter, setInter] = useState('')
     const navigate = useNavigate()
-
+    const notify = () => toast(getText('basketMsg'));
 
     const getInter = () => {
         axios.get(API_PATH + 'product/popular/')
@@ -64,7 +64,10 @@ function Interesting() {
         const product = { ...data, quantity };
         console.log(data, quantity)
 
-        addToCart(dispatch, product);
+        addToCart(dispatch, product)
+            .then(() => {
+                notify()
+            })
 
         setTimeout(() => {
         }, 3500);
@@ -73,6 +76,7 @@ function Interesting() {
 
     return (
         <>
+            <ToastContainer />
             <div className="Interesting">
                 <div className="container">
                     <div className="row">

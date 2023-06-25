@@ -7,6 +7,7 @@ import { API_PATH } from '../tools/constats'
 import { Rating } from 'react-simple-star-rating'
 import { getText } from '../locales'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import { ToastContainer, toast } from 'react-toastify';
 
 const HeadMain = () => {
     // const dispatch = useContext(WishlistDispatchContext); 
@@ -19,6 +20,8 @@ const HeadMain = () => {
     const saveBtns = useRef([]);
     const currect = useRef([])
     const text = useRef([])
+
+    const notify = () => toast(getText('basketMsg'));
 
     // Catch Rating value
     const handleRating = (rate) => {
@@ -72,7 +75,10 @@ const HeadMain = () => {
         const product = { ...data, quantity };
         console.log(data, quantity)
 
-        addToCart(dispatch, product);
+        addToCart(dispatch, product)
+            .then(() => {
+                notify();
+            })
 
         setTimeout(() => {
         }, 3500);
@@ -84,6 +90,8 @@ const HeadMain = () => {
 
     return (
         <>
+        
+        <ToastContainer/>
             <div className="top_2">
                 <div className="top_2_box">
                     <img src="/img/search.png" alt="" className="top_2_img" />
