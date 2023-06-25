@@ -147,7 +147,7 @@ const Navbar = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 d-flex justify-content-evenly">
-                            <a href='' className="nav_2_box">
+                            <a onClick={post} className="nav_2_box">
                                 <img src="/img/media_prof.png" alt="" className="nav_2_img" />
                                 <div className="nav_2_name">{getText("nav_4")}</div>
                             </a>

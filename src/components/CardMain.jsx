@@ -8,6 +8,7 @@ import { addToCart, CartDispatchContext } from '../contexts/cart';
 import { Rating } from 'react-simple-star-rating'
 import { getText } from '../locales';
 import { addToWishlist, WishlistDispatchContext } from '../contexts/wishlist'
+import { useNavigate } from 'react-router-dom';
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -17,7 +18,7 @@ import "swiper/css/thumbs";
 const CardMain = () => {
   const [id, setId] = useState(JSON.parse(localStorage.getItem('PRODUCT_ID') || 1))
   const dispatch = useContext(CartDispatchContext);
-
+  const navigate = useNavigate();
   const [data, setData] = useState('')
   const [like, setLike] = useState()
   const [data2, setData2] = useState('')
@@ -171,7 +172,10 @@ const CardMain = () => {
                 </div>
               </div>
               <div className="c_main_down">
-                <div onClick={handleAddToCart} className="c_main_btn">
+                <div onClick={() => {
+                  handleAddToCart()
+                  navigate('/basket')
+                }} className="c_main_btn">
                   {getText("add_basket")}
                 </div>
                 {/* <img src="/img/c_main_love.png" alt="" className="c_main_like" /> */}
