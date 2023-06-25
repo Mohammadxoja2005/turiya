@@ -246,37 +246,31 @@ const Basket = () => {
                             )
                         })}
 
-                        {items.map((product) => {
-                            return (
-                                <div className="col-12 d-lg-none d-block">
-                                    <div className="bas_box_2">
-                                        <div className="bas_2_top">
-                                            <div className="bas_2_text">
-                                                <div className="bas_2_h">{getText("bas_2_h_1")} ({product.quantity}) {getText("count")}</div>
-                                                <div className="bas_2_p">{total_amount}</div>
-                                            </div>
-                                            <div className="bas_2_text">
-                                                <div className="bas_2_h">{getText("bas_2_h_2")}</div>
-                                                <div className="bas_2_p">{product.price_delivery ? `${product.price_delivery}` : '0'} {getText("sum")}</div>
-                                            </div>
-                                            {/* <div className="bas_2_text">
-                    <div className="bas_2_h">Скидка</div>
-                    <div className="bas_2_p">10 000 сум</div>
-                </div>
-                <div className="bas_2_text">
-                    <div className="bas_2_h">Налог</div>
-                    <div className="bas_2_p">300 000 сум</div>
-                </div> */}
-                                            <div className="bas_2_sale">
-                                                <div className="bas_2_h_2">{getText("bas_2_h_3")}</div>
-                                                <div className="bas_2_p_2">{`${total_amount + product.price_delivery}`} {getText("sum")}</div>
-                                            </div>
+                        <div className="col-12 d-lg-none d-block">
+
+                            {productPaymentInfo && products.length != 0 ?
+
+                                <div className="bas_box_2">
+                                    <div className="bas_2_top">
+                                        <div className="bas_2_text">
+                                            <div className="bas_2_h">{getText("bas_2_h_1")} {productPaymentInfo.allQuantity} {getText("count")}</div>
+                                            <div className="bas_2_p">{productPaymentInfo.allPrice}</div>
                                         </div>
-                                        <div className="bas_2_a">{getText("bas_2_h_4")}</div>
+                                        <div className="bas_2_text">
+                                            <div className="bas_2_h">{getText("bas_2_h_2")}</div>
+                                            <div className="bas_2_p">{productPaymentInfo.deliverPrice} {getText("sum")}</div>
+                                        </div>
+
+                                        <div className="bas_2_sale">
+                                            <div className="bas_2_h_2">{getText("bas_2_h_3")}</div>
+                                            <div className="bas_2_p_2">{`${productPaymentInfo.allPrice + productPaymentInfo.deliverPrice}`} {getText("sum")}</div>
+                                        </div>
                                     </div>
+                                    <div onClick={order} className="bas_2_a">{getText("bas_2_h_4")}</div>
                                 </div>
-                            )
-                        })}
+
+                                : null}
+                        </div>
 
                     </div>
                 </div>
