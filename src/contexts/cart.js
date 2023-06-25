@@ -147,7 +147,35 @@ const reducer = (state, action) => {
       )
 
       const stringProducts = JSON.stringify(products);
-      localStorage.setItem('cartItems', stringProducts);
+      // localStorage.setItem('cartItems', stringProducts);
+
+      // cartItems = [...state.items, action.payload.cartItem];
+      // const stringCartItems = JSON.stringify(cartItems);
+
+      localStorage.setItem("cartItems", stringProducts)
+
+      const payMentDetail = {
+        allPrice: 0,
+        allQuantity: 0,
+        deliverPrice: 5000,
+      };
+
+      let allProductsPrice = 0;
+      let allProductQuantity = 0;
+
+      products.map((product) => {
+        allProductsPrice += product.new_price ? product.quantity * product.new_price : product.quantity * product.price;
+        allProductQuantity += product.quantity;
+      })
+
+      payMentDetail.allPrice = allProductsPrice;
+      payMentDetail.allQuantity = allProductQuantity;
+
+      const paymentDetailString = JSON.stringify(payMentDetail)
+
+      localStorage.setItem("paymentInfo", paymentDetailString)
+
+      localStorage.setItem("cartItems", stringProducts);
 
       return {
         ...state,
