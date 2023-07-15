@@ -99,7 +99,7 @@ const Profile = () => {
                             </div>
                         </div>
                         <div className="col-2 d-flex justify-content-end">
-                            <Link to="/" className='prof_out_box'>
+                            <Link to="/" className='prof_out_box' onClick={() => localStorage.removeItem('userToken')}>
                                 <img src="/img/out.png" alt="" />
                                 <div className="prof_out_name">
                                     {getText("out")}
